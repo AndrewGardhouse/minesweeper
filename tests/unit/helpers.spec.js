@@ -1,6 +1,10 @@
-import { createCell, createBoard } from '@/helpers';
+import { createCell, createBoard, addBombsToBoard } from '@/helpers';
 
 describe('helpers', () => {
+  const getBombCount = (board) => {
+    return [].concat.apply([], board).filter(cell => cell.isBomb).length;
+  }
+
   it('createCell returns an object representing a cell', () => {
     const row = 3;
     const column = 4;
@@ -26,5 +30,16 @@ describe('helpers', () => {
       column: 0,
       row: 0,
     });
-  })
+  });
+
+  it('addBombsToBoard flags random cells as bombs', () => {
+    const rows = 9;
+    const columns = 9;
+    const bombs = 10;
+
+    const board = createBoard(rows, columns);
+    const boardWithBombs = addBombsToBoard(board, bombs);
+
+    expect(getBombCount(boardWithBombs)).toBe(bombs);
+  });
 })

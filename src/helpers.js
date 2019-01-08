@@ -1,3 +1,7 @@
+function getRandomNumber(max) {
+  return Math.floor((Math.random() * 1000) + 1) % max;
+}
+
 export function createCell(row, column) {
   return {
     row,
@@ -13,4 +17,18 @@ export function createBoard(rows, columns) {
       return createCell(rowIndex, columnIndex);
     });
   });
+}
+
+export function addBombsToBoard(board, bombs) {
+  const boardWithBombs = JSON.parse(JSON.stringify(board));
+  while (bombs > 0) {
+    let row = getRandomNumber(board.length);
+    let column = getRandomNumber(board[0].length);
+
+    if (!boardWithBombs[row][column].isBomb) {
+      boardWithBombs[row][column].isBomb = true;
+      bombs--;
+    }
+  }
+  return boardWithBombs;
 }
