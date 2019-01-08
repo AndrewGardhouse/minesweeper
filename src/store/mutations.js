@@ -1,1 +1,5 @@
-export default {};
+export default {
+  addBoard(state, board) {
+    state.board = board;
+  }
+};
