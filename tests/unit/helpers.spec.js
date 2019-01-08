@@ -20,8 +20,9 @@ describe('helpers', () => {
   it('createBoard creates a 2D array representing the board', () => {
     const rows = 9;
     const columns = 9;
+    const bombs = 10;
 
-    const board = createBoard(rows, columns);
+    const board = createBoard(rows, columns, bombs);
     const firstCell = board[0][0];
 
     expect(board.length).toBe(rows);
@@ -30,6 +31,7 @@ describe('helpers', () => {
       column: 0,
       row: 0,
     });
+    expect(getBombCount(board)).toBe(bombs);
   });
 
   it('addBombsToBoard flags random cells as bombs', () => {

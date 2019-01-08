@@ -11,12 +11,13 @@ export function createCell(row, column) {
   }
 }
 
-export function createBoard(rows, columns) {
-  return Array(rows).fill().map((row, rowIndex) => {
+export function createBoard(rows, columns, bombs) {
+  const board = Array(rows).fill().map((row, rowIndex) => {
     return Array(columns).fill().map((column, columnIndex) => {
       return createCell(rowIndex, columnIndex);
     });
   });
+  return addBombsToBoard(board, bombs);
 }
 
 export function addBombsToBoard(board, bombs) {
