@@ -1,4 +1,4 @@
-import { createCell, createBoard, addBombsToBoard, getSurroundingCellCoordinates } from '@/helpers';
+import { createCell, createBoard, addBombsToBoard, getSurroundingCellCoordinates, getSurroundingBombCount } from '@/helpers';
 
 describe('helpers', () => {
   const getBombCount = (board) => {
@@ -64,5 +64,20 @@ describe('helpers', () => {
     expect(topLeftCornerCellCoordinates).toEqual(expect.arrayContaining([[0, 1], [1, 1], [1, 0]]));
     expect(centerCellCoordinates).toEqual(expect.arrayContaining([[0, 0], [0, 1], [0, 2], [1, 2], [2, 2], [2, 1], [2, 0], [1, 0] ]));
     expect(bottomRightCellCoordinates).toEqual(expect.arrayContaining([[2, 1], [1, 1], [1, 2] ]));
+  });
+
+  it('getSurroundingBombCount returns number of surrounding bombs', () => {
+    const rows = 3;
+    const columns = 3;
+
+    const board = createBoard(rows, columns);
+    expect(getBombCount(board)).toBe(0);
+
+    board[0][0].isBomb = true;
+
+    expect(getBombCount(board)).toBe(1);
+
+    expect(getSurroundingBombCount(board, board[2][2])).toBe(0);
+    expect(getSurroundingBombCount(board, board[1][1])).toBe(1);
   });
 })

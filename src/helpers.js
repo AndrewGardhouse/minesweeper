@@ -99,3 +99,12 @@ export function getSurroundingCellCoordinates(board, cell) {
 
   return cells;
 }
+
+export function getSurroundingBombCount(board, cell) {
+  return cell.surroundingCellCoordinates.reduce((bombCount, currentCell) => {
+    if (board[currentCell[0]][currentCell[1]].isBomb) {
+      bombCount++;
+    }
+    return bombCount;
+  }, 0);
+};
