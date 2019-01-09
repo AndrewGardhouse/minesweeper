@@ -21,6 +21,7 @@ describe('actions', () => {
 
     const bombCount = getBombCount(store.state.board);
 
+    expect(store.state.selectedDifficulty).toBe(difficulty);
     expect(store.state.board.length).toBe(store.state.gameOptions[difficulty].rows);
     expect(store.state.board[0].length).toBe(store.state.gameOptions[difficulty].columns);
     expect(bombCount).toBe(store.state.gameOptions[difficulty].bombs);
@@ -33,6 +34,7 @@ describe('actions', () => {
 
     const bombCount = getBombCount(store.state.board);
 
+    expect(store.state.selectedDifficulty).toBe(difficulty);
     expect(store.state.board.length).toBe(store.state.gameOptions[difficulty].rows);
     expect(store.state.board[0].length).toBe(store.state.gameOptions[difficulty].columns);
     expect(bombCount).toBe(store.state.gameOptions[difficulty].bombs);
@@ -45,6 +47,7 @@ describe('actions', () => {
 
     const bombCount = getBombCount(store.state.board);
 
+    expect(store.state.selectedDifficulty).toBe(difficulty);
     expect(store.state.board.length).toBe(store.state.gameOptions[difficulty].rows);
     expect(store.state.board[0].length).toBe(store.state.gameOptions[difficulty].columns);
     expect(bombCount).toBe(store.state.gameOptions[difficulty].bombs);
@@ -57,6 +60,7 @@ describe('actions', () => {
 
     const bombCount = getBombCount(store.state.board);
 
+    expect(store.state.selectedDifficulty).toBe(difficulty);
     expect(store.state.board.length).toBe(store.state.gameOptions[difficulty].rows);
     expect(store.state.board[0].length).toBe(store.state.gameOptions[difficulty].columns);
     expect(bombCount).toBe(store.state.gameOptions[difficulty].bombs);

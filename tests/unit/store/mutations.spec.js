@@ -21,4 +21,12 @@ describe('mutations', () => {
 
     expect(store.state.board).toMatchObject(board);
   });
+
+  it('setSelectedDifficulty', () => {
+    const difficulty = 'hard';
+
+    store.commit('setSelectedDifficulty', difficulty);
+
+    expect(store.state.selectedDifficulty).toBe(difficulty);
+  })
 })

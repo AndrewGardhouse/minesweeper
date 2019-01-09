@@ -4,4 +4,7 @@ export default {
   addBoard(state, board) {
     state.board = board;
   },
+  setSelectedDifficulty(state, difficulty) {
+    state.selectedDifficulty = difficulty;
+  }
 };

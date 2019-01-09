@@ -5,6 +5,7 @@ export default {
     const { rows, columns, bombs } = state.gameOptions[difficulty];
     const board = createBoard(rows, columns, bombs);
 
+    commit('setSelectedDifficulty', difficulty);
     commit('addBoard', board);
   },
 };
