@@ -17,13 +17,16 @@ export function createCell(row, column) {
   };
 }
 
-export function createBoard(rows, columns, bombs) {
-  const board = Array(rows).fill().map((row, rowIndex) => {
-    return Array(columns).fill().map((column, columnIndex) => {
-      return createCell(rowIndex, columnIndex);
-    });
+export function createBoard(rows, columns, bombs = null) {
+  let board = Array(rows).fill().map((row, rowIndex) => {
+    return Array(columns).fill().map((column, columnIndex) => createCell(rowIndex, columnIndex));
   });
-  return addBombsToBoard(board, bombs);
+
+  if (bombs) {
+    board = addBombsToBoard(board, bombs);
+  }
+
+  return board;
 }
 
 export function addBombsToBoard(board, bombs) {
