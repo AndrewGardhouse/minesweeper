@@ -12,6 +12,7 @@ export function createCell(row, column) {
     row,
     column,
     isBomb: false,
+    isRevealed: false,
     surroundingBombCount: null,
     surroundingCellCoordinates: [],
   };
