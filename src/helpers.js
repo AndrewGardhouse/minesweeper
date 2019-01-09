@@ -1,3 +1,8 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-plusplus */
+/* eslint-disable no-use-before-define */
+/* eslint-disable arrow-body-style */
+
 function getRandomNumber(max) {
   return Math.floor((Math.random() * 1000) + 1) % max;
 }
@@ -9,7 +14,7 @@ export function createCell(row, column) {
     isBomb: false,
     bombProximity: null,
     surroundingCellCoordinates: [],
-  }
+  };
 }
 
 export function createBoard(rows, columns, bombs) {
@@ -24,8 +29,8 @@ export function createBoard(rows, columns, bombs) {
 export function addBombsToBoard(board, bombs) {
   const boardWithBombs = JSON.parse(JSON.stringify(board));
   while (bombs > 0) {
-    let row = getRandomNumber(board.length);
-    let column = getRandomNumber(board[0].length);
+    const row = getRandomNumber(board.length);
+    const column = getRandomNumber(board[0].length);
 
     if (!boardWithBombs[row][column].isBomb) {
       boardWithBombs[row][column].isBomb = true;
@@ -36,7 +41,7 @@ export function addBombsToBoard(board, bombs) {
 }
 
 export function getSurroundingCellCoordinates(board, cell) {
-  let cells = [];
+  const cells = [];
 
   // top cell
   if (cell.row > 0) {
