@@ -15,6 +15,7 @@ describe('helpers', () => {
     expect(cell.column).toBe(column);
     expect(cell.isBomb).toBeFalsy();
     expect(cell.bombProximity).toBeNull();
+    expect(cell.surroundingCells).toEqual([]);
   });
 
   it('createBoard creates a 2D array representing the board', () => {

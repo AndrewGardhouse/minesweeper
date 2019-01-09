@@ -8,6 +8,7 @@ export function createCell(row, column) {
     column,
     isBomb: false,
     bombProximity: null,
+    surroundingCells: [],
   }
 }
 
