@@ -8,7 +8,7 @@ export function createCell(row, column) {
     column,
     isBomb: false,
     bombProximity: null,
-    surroundingCells: [],
+    surroundingCellCoordinates: [],
   }
 }
 
@@ -33,4 +33,50 @@ export function addBombsToBoard(board, bombs) {
     }
   }
   return boardWithBombs;
+}
+
+export function getSurroundingCellCoordinates(board, cell) {
+  let cells = [];
+
+  // top cell
+  if (cell.row > 0) {
+    cells.push([cell.row - 1, cell.column]);
+  }
+
+  // bottom cell
+  if (cell.row < board.length - 1) {
+    cells.push([cell.row + 1, cell.column]);
+  }
+
+  // left cell
+  if (cell.column > 0) {
+    cells.push([cell.row, cell.column - 1]);
+  }
+
+  // right cell
+  if (cell.column < board[0].length - 1) {
+    cells.push([cell.row, cell.column + 1]);
+  }
+
+  // top-left cell
+  if (cell.row > 0 && cell.column > 0) {
+    cells.push([cell.row - 1, cell.column - 1]);
+  }
+
+  // top-right cell
+  if (cell.row > 0 && cell.column < board[0].length - 1) {
+    cells.push([cell.row - 1, cell.column + 1]);
+  }
+
+  // bottom-left cell
+  if (cell.row < board.length - 1 && cell.column > 0) {
+    cells.push([cell.row + 1, cell.column - 1]);
+  }
+
+  // bottom-right cell
+  if (cell.row < board.length - 1 && cell.column < board[0].length - 1) {
+    cells.push([cell.row + 1, cell.column + 1]);
+  }
+
+  return cells;
 }
