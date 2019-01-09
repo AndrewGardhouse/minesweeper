@@ -26,6 +26,13 @@ export function createBoard(rows, columns, bombs = null) {
     board = addBombsToBoard(board, bombs);
   }
 
+  board = board.map((row) => {
+    return row.map(cell => {
+      cell.surroundingCellCoordinates = getSurroundingCellCoordinates(board, cell);
+      return cell;
+    });
+  });
+
   return board;
 }
 

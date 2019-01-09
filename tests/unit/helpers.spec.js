@@ -28,10 +28,11 @@ describe('helpers', () => {
 
     expect(board.length).toBe(rows);
     expect(board[0].length).toBe(columns);
-    expect(board[0][0]).toMatchObject({
+    expect(firstCell).toMatchObject({
       column: 0,
       row: 0,
     });
+    expect(firstCell.surroundingCellCoordinates).toEqual(expect.arrayContaining([[0, 1], [1, 1], [1, 0]]));
     expect(getBombCount(board)).toBe(bombs);
   });
 
@@ -54,11 +55,14 @@ describe('helpers', () => {
     const board = createBoard(rows, columns, bombs);
     const topLeftCornerCell = board[0][0];
     const centerCell = board[1][1];
+    const bottomRightCell = board[2][2];
 
     const topLeftCornerCellCoordinates = getSurroundingCellCoordinates(board, topLeftCornerCell);
     const centerCellCoordinates = getSurroundingCellCoordinates(board, centerCell);
+    const bottomRightCellCoordinates = getSurroundingCellCoordinates(board, bottomRightCell);
 
     expect(topLeftCornerCellCoordinates).toEqual(expect.arrayContaining([[0, 1], [1, 1], [1, 0]]));
     expect(centerCellCoordinates).toEqual(expect.arrayContaining([[0, 0], [0, 1], [0, 2], [1, 2], [2, 2], [2, 1], [2, 0], [1, 0] ]));
+    expect(bottomRightCellCoordinates).toEqual(expect.arrayContaining([[2, 1], [1, 1], [1, 2] ]));
   });
 })
