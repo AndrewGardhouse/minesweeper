@@ -14,7 +14,7 @@ describe('helpers', () => {
     expect(cell.row).toBe(row);
     expect(cell.column).toBe(column);
     expect(cell.isBomb).toBeFalsy();
-    expect(cell.bombProximity).toBeNull();
+    expect(cell.surroundingBombCount).toBeNull();
     expect(cell.surroundingCellCoordinates).toEqual([]);
   });
 
@@ -33,6 +33,7 @@ describe('helpers', () => {
       row: 0,
     });
     expect(firstCell.surroundingCellCoordinates).toEqual(expect.arrayContaining([[0, 1], [1, 1], [1, 0]]));
+    expect(typeof firstCell.surroundingBombCount).toBe('number');
     expect(getBombCount(board)).toBe(bombs);
   });
 

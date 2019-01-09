@@ -12,7 +12,7 @@ export function createCell(row, column) {
     row,
     column,
     isBomb: false,
-    bombProximity: null,
+    surroundingBombCount: null,
     surroundingCellCoordinates: [],
   };
 }
@@ -29,6 +29,7 @@ export function createBoard(rows, columns, bombs = null) {
   board = board.map((row) => {
     return row.map(cell => {
       cell.surroundingCellCoordinates = getSurroundingCellCoordinates(board, cell);
+      cell.surroundingBombCount = getSurroundingBombCount(board, cell);
       return cell;
     });
   });
