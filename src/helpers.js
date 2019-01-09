@@ -42,44 +42,48 @@ export function addBombsToBoard(board, bombs) {
 
 export function getSurroundingCellCoordinates(board, cell) {
   const cells = [];
+  const hasCellAbove = cell.row > 0;
+  const hasCellBelow = cell.row < board.length - 1;
+  const hasCellToLeft = cell.column > 0;
+  const hasCellToRight = cell.column < board[0].length - 1;
 
   // top cell
-  if (cell.row > 0) {
+  if (hasCellAbove) {
     cells.push([cell.row - 1, cell.column]);
   }
 
   // bottom cell
-  if (cell.row < board.length - 1) {
+  if (hasCellBelow) {
     cells.push([cell.row + 1, cell.column]);
   }
 
   // left cell
-  if (cell.column > 0) {
+  if (hasCellToLeft) {
     cells.push([cell.row, cell.column - 1]);
   }
 
   // right cell
-  if (cell.column < board[0].length - 1) {
+  if (hasCellToRight) {
     cells.push([cell.row, cell.column + 1]);
   }
 
   // top-left cell
-  if (cell.row > 0 && cell.column > 0) {
+  if (hasCellAbove && hasCellToLeft) {
     cells.push([cell.row - 1, cell.column - 1]);
   }
 
   // top-right cell
-  if (cell.row > 0 && cell.column < board[0].length - 1) {
+  if (hasCellAbove && hasCellToRight) {
     cells.push([cell.row - 1, cell.column + 1]);
   }
 
   // bottom-left cell
-  if (cell.row < board.length - 1 && cell.column > 0) {
+  if (hasCellBelow && hasCellToLeft) {
     cells.push([cell.row + 1, cell.column - 1]);
   }
 
   // bottom-right cell
-  if (cell.row < board.length - 1 && cell.column < board[0].length - 1) {
+  if (hasCellBelow && hasCellToRight) {
     cells.push([cell.row + 1, cell.column + 1]);
   }
 
