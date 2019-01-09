@@ -28,7 +28,7 @@ export function createBoard(rows, columns, bombs = null) {
   }
 
   board = board.map((row) => {
-    return row.map(cell => {
+    return row.map((cell) => {
       cell.surroundingCellCoordinates = getSurroundingCellCoordinates(board, cell);
       cell.surroundingBombCount = getSurroundingBombCount(board, cell);
       return cell;
@@ -109,4 +109,4 @@ export function getSurroundingBombCount(board, cell) {
     }
     return bombCount;
   }, 0);
-};
+}

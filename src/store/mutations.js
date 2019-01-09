@@ -6,5 +6,5 @@ export default {
   },
   setSelectedDifficulty(state, difficulty) {
     state.selectedDifficulty = difficulty;
-  }
+  },
 };
