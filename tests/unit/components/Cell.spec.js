@@ -21,6 +21,7 @@ describe('Cell.vue', () => {
       store,
       localVue,
     });
+    wrapper.vm.workers = [{}];
   });
 
   it('should should have cell properties from board', () => {
@@ -32,6 +33,20 @@ describe('Cell.vue', () => {
     expect(wrapper.vm.surroundingBombCount).toBe(0);
     expect(wrapper.vm.surroundingCellCoordinates).toHaveLength(3);
   });
+
+  it('should reveal what the cell is when clicked and mark as isRevealed as true', () => {
+    const cellCover = wrapper.find('.cell__cover');
+
+    expect(cellCover.exists()).toBeTruthy();
+    expect(wrapper.props().isRevealed).toBeFalsy();
+
+    cellCover.trigger('click');
+    wrapper.setProps({ isRevealed: store.state.board[0][0].isRevealed });
+
+    expect(wrapper.props().isRevealed).toBeTruthy();
+    expect(wrapper.find('.cell__cover').exists()).toBeFalsy();
+  });
+
   // clicking a cell reveals what the cell is
     // if it's the first cell revealed, it starts a game timer
     // if cell is revealed to be a bomb, timer stops and it's game over

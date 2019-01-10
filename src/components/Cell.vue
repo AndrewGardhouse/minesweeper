@@ -1,10 +1,15 @@
 <template>
   <div class="cell">
-    <div class="cell__cover"></div>
+    <div class="cell__cover"
+         v-if="!isRevealed"
+         @click="revealCell({ row, column })">
+    </div>
   </div>
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+
 export default {
   props: {
     row: {
@@ -31,6 +36,11 @@ export default {
       type: Array,
       required: true,
     },
+  },
+  methods: {
+    ...mapMutations([
+      'revealCell'
+    ]),
   },
 };
 </script>
