@@ -10,7 +10,8 @@ export default {
 <style lang="scss">
 .cell {
   border: 1px solid grey;
-  width: 25px;
-  height: 25px;
+  width: 22px;
+  height: 22px;
+  margin: 1px;
 }
 </style>

@@ -14,9 +14,6 @@
     <div class="game__board">
       <div v-for="(row, rowIndex) in board"
            :key="rowIndex"
-           :style="{
-             gridTemplateColumns: `repeat(${gameOptions[selectedDifficulty].columns}, 1fr)`
-            }"
            class="game__board__row">
         <Cell v-for="(cell, cellIndex) in row" :key="cellIndex" />
       </div>
@@ -52,10 +49,15 @@ export default {
 
 <style lang="scss">
 .game {
-  &__controls {}
+  &__controls {
+    margin-bottom: 15px;
+  }
   &__board {
+    display: inline-block;
+    padding: 1.5px;
+    border: solid 3px dimgray;
     &__row {
-      display: grid;
+      display: flex;
     }
   }
 }
