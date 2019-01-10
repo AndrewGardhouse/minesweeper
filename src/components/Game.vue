@@ -1,10 +1,11 @@
 <template>
   <div class="game">
     <div class="game__controls">
-      <select class="game__controls__difficulties" @change="onChange" v-model="difficulty">
+      <select class="game__controls__difficulties" @change="createBoard($event.target.value)">
         <option v-for="(value, key, index) in gameOptions"
                 :key="index"
                 :value="key"
+                :selected="key === selectedDifficulty"
                 v-once>{{ value.optionText }}</option>
       </select>
       <!-- reset button -->
@@ -31,13 +32,7 @@ export default {
   components: {
     Cell,
   },
-  data() {
-    return {
-      difficulty: '',
-    };
-  },
   mounted() {
-    this.difficulty = this.selectedDifficulty;
     this.createBoard(this.selectedDifficulty);
   },
   computed: {
@@ -51,9 +46,6 @@ export default {
     ...mapActions([
       'createBoard',
     ]),
-    onChange() {
-      this.createBoard(this.difficulty);
-    },
   },
 };
 </script>

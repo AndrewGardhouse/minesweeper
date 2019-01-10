@@ -24,20 +24,18 @@ describe('Game.vue', () => {
   it('sets the board on mounted', () => {
     expect(store.state.selectedDifficulty).toBe('easy');
 
-    expect(wrapper.vm.difficulty).toBe('easy');
     expect(store.state.board.length).toBe(store.state.gameOptions['easy'].rows);
     expect(store.state.board[0].length).toBe(store.state.gameOptions['easy'].columns);
   });
 
   it('can change the game difficulty', () => {
-    const selectOptions = wrapper.find('select');
+    const selectOptions = wrapper.find('select').findAll('option');
 
     expect(store.state.selectedDifficulty).toBe('easy');
     expect(store.state.board.length).toBe(store.state.gameOptions['easy'].rows);
     expect(store.state.board[0].length).toBe(store.state.gameOptions['easy'].columns);
 
-    wrapper.vm.difficulty = 'medium';
-    selectOptions.trigger('change');
+    selectOptions.at(1).setSelected();
 
     expect(store.state.selectedDifficulty).toBe('medium');
     expect(store.state.board.length).toBe(store.state.gameOptions['medium'].rows);
@@ -45,14 +43,11 @@ describe('Game.vue', () => {
   });
 
   it('should have the correct amount of Cells', () => {
-    const selectOptions = wrapper.find('select');
+    const selectOptions = wrapper.find('select').findAll('option');
     let cells = wrapper.findAll(Cell);
     let totalCellCount = store.state.gameOptions[store.state.selectedDifficulty].columns *store.state.gameOptions[store.state.selectedDifficulty].rows;
 
-    expect(cells.length).toBe(totalCellCount);
-
-    wrapper.vm.difficulty = 'medium';
-    selectOptions.trigger('change');
+    selectOptions.at(1).setSelected();
 
     totalCellCount = store.state.gameOptions[store.state.selectedDifficulty].columns *store.state.gameOptions[store.state.selectedDifficulty].rows;
 
