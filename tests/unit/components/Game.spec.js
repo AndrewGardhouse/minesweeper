@@ -17,7 +17,8 @@ describe('Game.vue', () => {
 
     wrapper = shallowMount(Game, {
       store,
-      localVue
+      localVue,
+      sync: false,
     });
   });
 

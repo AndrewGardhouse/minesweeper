@@ -15,7 +15,9 @@
       <div v-for="(row, rowIndex) in board"
            :key="rowIndex"
            class="game__board__row">
-        <Cell v-for="(cell, cellIndex) in row" :key="cellIndex" />
+        <Cell v-for="(cell, cellIndex) in row"
+              :key="cellIndex"
+              v-bind="cell" />
       </div>
     </div>
   </div>
