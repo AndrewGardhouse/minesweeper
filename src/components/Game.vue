@@ -1,7 +1,7 @@
 <template>
   <div class="game">
-    <div class="game__options">
-      <select class="game__options__dropdown">
+    <div class="game__controls">
+      <select class="game__controls__difficulties">
         <option v-for="(value, key, index) in gameOptions"
                 :key="index"
                 :value="key"
@@ -21,9 +21,14 @@
 import { mapState, mapActions } from 'vuex';
 
 export default {
+  mounted() {
+    this.createBoard(this.selectedDifficulty);
+  },
   computed: {
     ...mapState([
       'gameOptions',
+      'board',
+      'selectedDifficulty',
     ]),
   },
   methods: {
@@ -36,8 +41,6 @@ export default {
 
 <style lang="scss">
 .game {
-  &__options {
-
-  }
+  &__controls {}
 }
 </style>
