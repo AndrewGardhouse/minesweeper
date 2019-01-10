@@ -35,7 +35,7 @@ describe('Game.vue', () => {
     expect(store.state.board.length).toBe(store.state.gameOptions['easy'].rows);
     expect(store.state.board[0].length).toBe(store.state.gameOptions['easy'].columns);
 
-    selectOptions.at(1).setSelected();
+    selectOptions.at(2).setSelected();
 
     expect(store.state.selectedDifficulty).toBe('medium');
     expect(store.state.board.length).toBe(store.state.gameOptions['medium'].rows);
@@ -47,7 +47,7 @@ describe('Game.vue', () => {
     let cells = wrapper.findAll(Cell);
     let totalCellCount = store.state.gameOptions[store.state.selectedDifficulty].columns *store.state.gameOptions[store.state.selectedDifficulty].rows;
 
-    selectOptions.at(1).setSelected();
+    selectOptions.at(2).setSelected();
 
     totalCellCount = store.state.gameOptions[store.state.selectedDifficulty].columns *store.state.gameOptions[store.state.selectedDifficulty].rows;
 
