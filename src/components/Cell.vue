@@ -1,9 +1,15 @@
 <template>
   <div class="cell">
-    <div class="cell__cover"
+    <button class="cell__cover-button"
          v-if="!isRevealed"
-         @click="revealCell({ row, column })">
-    </div>
+         :class="{
+           'possible-bomb': possibleBomb,
+           'not-sure': notSure,
+         }"
+         @click.left="revealCell({ row, column })"
+         @click.right.prevent="flagCell"
+         @click.alt.prevent="flagCell">
+    </button>
   </div>
 </template>
 
@@ -37,10 +43,33 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      possibleBomb: false,
+      notSure: false,
+    };
+  },
   methods: {
     ...mapMutations([
-      'revealCell'
+      'revealCell',
     ]),
+    flagCell() {
+      if (!this.possibleBomb && !this.notSure) {
+        this.possibleBomb = true;
+        return;
+      }
+
+      if (this.possibleBomb && !this.notSure) {
+        this.possibleBomb = false;
+        this.notSure = true;
+        return;
+      }
+
+      if (this.notSure) {
+        this.notSure = false;
+        return;
+      }
+    },
   },
 };
 </script>
@@ -53,12 +82,32 @@ export default {
   height: 22px;
   margin: 1px;
   position: relative;
-  &__cover {
+  &__cover-button {
     position: absolute;
+    left: 0;
+    border:none;
     height: 100%;
     width: 100%;
     background-color: grey;
+    padding: 0;
     cursor: pointer;
+    &:focus {
+      outline: none;
+    }
+    &.possible-bomb, &.not-sure {
+      color: white;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      font-size: 16px;
+    }
+    &.possible-bomb::after {
+      content: '⚑';
+    }
+    &.not-sure::after {
+      content: '?';
+      font-weight: bold;
+    }
   }
 }
 </style>
