@@ -63,6 +63,36 @@ describe('Cell.vue', () => {
     expect(cellCover.classes('possible-bomb')).toBeFalsy();
     expect(cellCover.classes('not-sure')).toBeFalsy();
   });
+
+  it('should not be able to reveal cell if flagged', () => {
+    const cellCover = wrapper.find('.cell__cover-button');
+
+    expect(wrapper.props().isRevealed).toBeFalsy();
+
+    // flagged as possible bomb
+    cellCover.trigger('contextmenu');
+    cellCover.trigger('click');
+
+    wrapper.setProps({ isRevealed: store.state.board[0][0].isRevealed });
+
+    expect(wrapper.props().isRevealed).toBeFalsy();
+
+    // flagged as not sure
+    cellCover.trigger('contextmenu');
+    cellCover.trigger('click');
+
+    wrapper.setProps({ isRevealed: store.state.board[0][0].isRevealed });
+
+    expect(wrapper.props().isRevealed).toBeFalsy();
+
+    // not flagged
+    cellCover.trigger('contextmenu');
+    cellCover.trigger('click');
+
+    wrapper.setProps({ isRevealed: store.state.board[0][0].isRevealed });
+
+    expect(wrapper.props().isRevealed).toBeTruthy();
+  });
   // clicking a cell reveals what the cell is
     // if it's the first cell revealed, it starts a game timer
     // if cell is revealed to be a bomb, timer stops and it's game over

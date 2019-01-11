@@ -6,7 +6,7 @@
            'possible-bomb': possibleBomb,
            'not-sure': notSure,
          }"
-         @click.left="revealCell({ row, column })"
+         @click.left="onClick"
          @click.right.prevent="flagCell"
          @click.alt.prevent="flagCell">
     </button>
@@ -53,6 +53,14 @@ export default {
     ...mapMutations([
       'revealCell',
     ]),
+    onClick() {
+      if (this.possibleBomb || this.notSure) {
+        return;
+      }
+      const [row, column] = [this.row, this.column];
+
+      this.revealCell({ row, column });
+    },
     flagCell() {
       if (!this.possibleBomb && !this.notSure) {
         this.possibleBomb = true;
@@ -67,7 +75,6 @@ export default {
 
       if (this.notSure) {
         this.notSure = false;
-        return;
       }
     },
   },
@@ -101,12 +108,18 @@ export default {
       height: 100%;
       font-size: 16px;
     }
-    &.possible-bomb::after {
-      content: '⚑';
+    &.possible-bomb {
+      background-color: green;
+      &::after {
+        content: '⚑';
+      }
     }
-    &.not-sure::after {
-      content: '?';
-      font-weight: bold;
+    &.not-sure {
+      background-color: blue;
+      &::after {
+        content: '?';
+        font-weight: bold;
+      }
     }
   }
 }
