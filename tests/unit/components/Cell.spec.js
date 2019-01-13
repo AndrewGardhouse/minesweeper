@@ -1,6 +1,7 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import Vuex from 'vuex';
 import sampleStore from '../../sample-store.js';
+import { createTestBoard } from '@/helpers';
 import Cell from '@/components/Cell';
 
 describe('Cell.vue', () => {
@@ -15,7 +16,7 @@ describe('Cell.vue', () => {
 
     store = new Vuex.Store(sampleStore)
 
-    store.dispatch('createBoard', 'test');
+    store.commit('addBoard', createTestBoard());
 
     wrapper = shallowMount(Cell, {
       propsData: store.state.board[0][0],
@@ -30,9 +31,9 @@ describe('Cell.vue', () => {
     // this is the first cell of the board
     expect(wrapper.vm.row).toBe(0);
     expect(wrapper.vm.column).toBe(0);
-    expect(typeof wrapper.vm.isBomb).toBe('boolean');
+    expect(wrapper.vm.isBomb).toBe(false);
     expect(wrapper.vm.isRevealed).toBeFalsy();
-    expect(typeof wrapper.vm.surroundingBombCount).toBe('number');
+    expect(wrapper.vm.surroundingBombCount).toBe(0);
     expect(wrapper.vm.surroundingCellCoordinates).toHaveLength(3);
   });
 
