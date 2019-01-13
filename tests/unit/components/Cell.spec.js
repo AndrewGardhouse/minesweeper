@@ -7,6 +7,7 @@ describe('Cell.vue', () => {
   let localVue;
   let store;
   let wrapper;
+  let cellCover;
 
   beforeEach(() => {
     localVue = createLocalVue();
@@ -22,6 +23,7 @@ describe('Cell.vue', () => {
       localVue,
     });
     wrapper.vm.workers = [{}];
+    cellCover = wrapper.find('.cell__cover-button');
   });
 
   it('should should have cell properties from board', () => {
@@ -35,8 +37,6 @@ describe('Cell.vue', () => {
   });
 
   it('should reveal what the cell is when clicked and mark as isRevealed as true', () => {
-    const cellCover = wrapper.find('.cell__cover-button');
-
     expect(cellCover.exists()).toBeTruthy();
     expect(wrapper.props().isRevealed).toBeFalsy();
 
@@ -48,8 +48,6 @@ describe('Cell.vue', () => {
   });
 
   it('should flag cell as possible bomb or mystery and disable the cell cover button', () => {
-    const cellCover = wrapper.find('.cell__cover-button');
-
     cellCover.trigger('contextmenu');
 
     expect(cellCover.classes('possible-bomb')).toBeTruthy();
@@ -65,8 +63,6 @@ describe('Cell.vue', () => {
   });
 
   it('should not be able to reveal cell if flagged', () => {
-    const cellCover = wrapper.find('.cell__cover-button');
-
     expect(wrapper.props().isRevealed).toBeFalsy();
 
     // flagged as possible bomb
@@ -92,6 +88,21 @@ describe('Cell.vue', () => {
     wrapper.setProps({ isRevealed: store.state.board[0][0].isRevealed });
 
     expect(wrapper.props().isRevealed).toBeTruthy();
+  });
+
+  it('should have .is-flagged class if revealed while flagged', () => {
+    expect(wrapper.find('.cell').classes('is-flagged')).toBeFalsy();
+
+    cellCover.trigger('contextmenu');
+
+    store.commit('revealCell', {
+      row: wrapper.props().row,
+      column: wrapper.props().column,
+    });
+
+    wrapper.setProps({ isRevealed: store.state.board[0][0].isRevealed });
+
+    expect(wrapper.find('.cell').classes('is-flagged')).toBeTruthy();
   });
   // clicking a cell reveals what the cell is
     // if it's the first cell revealed, it starts a game timer

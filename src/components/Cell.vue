@@ -1,5 +1,8 @@
 <template>
-  <div class="cell">
+  <div class="cell"
+       :class="{
+         'is-flagged': (possibleBomb || notSure) && isRevealed
+       }">
     <button class="cell__cover-button"
          v-if="!isRevealed"
          :class="{
@@ -89,6 +92,9 @@ export default {
   height: 22px;
   margin: 1px;
   position: relative;
+  &.is-flagged {
+    border-style: dashed;
+  }
   &__cover-button {
     position: absolute;
     left: 0;
