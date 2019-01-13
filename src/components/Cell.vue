@@ -14,12 +14,11 @@
          @click.alt.prevent="flagCell">
     </button>
     {{ cellContent }}
-    <!-- bomb: &#x25CF; -->
   </div>
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapMutations, mapActions } from 'vuex';
 
 export default {
   props: {
@@ -71,12 +70,19 @@ export default {
     ...mapMutations([
       'revealCell',
     ]),
+    ...mapActions([
+      'revealSurroundingCells'
+    ]),
     onClick() {
       if (this.possibleBomb || this.notSure) {
         return;
       }
 
       this.revealCell([this.row, this.column]);
+
+      if (!this.isBomb && this.surroundingBombCount < 1) {
+        this.revealSurroundingCells(this.surroundingCellCoordinates);
+      }
     },
     flagCell() {
       if (!this.possibleBomb && !this.notSure) {

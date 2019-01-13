@@ -96,10 +96,10 @@ describe('Cell.vue', () => {
 
     cellCover.trigger('contextmenu');
 
-    store.commit('revealCell', {
-      row: wrapper.props().row,
-      column: wrapper.props().column,
-    });
+    store.commit('revealCell', [
+      wrapper.props().row,
+      wrapper.props().column,
+    ]);
 
     wrapper.setProps({ isRevealed: store.state.board[0][0].isRevealed });
 
@@ -127,7 +127,7 @@ describe('Cell.vue', () => {
     expect(wrapper.find('.cell').text()).toBe('');
   });
 
-  it('reveals surrounding cells when clicked if surroundingBombCount is 0 and the surrounding cell is not a bomb ', () => {
+  it('reveals surrounding cells when clicked', () => {
     // surrounding Cells without bombs
     cellCover.trigger('click');
     wrapper.setProps({ isRevealed: store.state.board[0][0].isRevealed });
@@ -142,11 +142,32 @@ describe('Cell.vue', () => {
     expect(store.state.board[2][1].isRevealed).toBeTruthy();
     expect(store.state.board[2][2].isRevealed).toBeFalsy();
   });
-  // clicking a cell reveals what the cell is
-    // if it's the first cell revealed, it starts a game timer
-    // if cell is revealed to be a bomb, timer stops and it's game over
-    // if a cell is not in proximity to any bombs, it will reveal the surrounding cells
-  // right-clicking flags cell as bomb and disable it from being revealed,
-  // right-clicking again flags cell as mystery and disable it from being revealed,
-  // right-clicking once more will make the cell revealable again
+
+  it('reveals only clicked cell is near at least 1 bomb', () => {
+    wrapper.setProps(store.state.board[1][1]);
+
+    cellCover.trigger('click');
+
+    wrapper.setProps({ isRevealed: store.state.board[0][0].isRevealed });
+
+    wrapper.props().surroundingCellCoordinates.forEach((cellCoords) => {
+      const [row, column] = cellCoords;
+      expect(store.state.board[row][column].isRevealed).toBeFalsy();
+    });
+  });
+
+  it('reveals only clicked cell if is bomb', () => {
+    wrapper.setProps(store.state.board[2][2]);
+
+    cellCover.trigger('click');
+
+    wrapper.setProps({ isRevealed: store.state.board[0][0].isRevealed });
+
+    wrapper.props().surroundingCellCoordinates.forEach((cellCoords) => {
+      const [row, column] = cellCoords;
+      expect(store.state.board[row][column].isRevealed).toBeFalsy();
+    });
+  });
+  // if it's the first cell revealed, it starts a game timer
+  // if cell is revealed to be a bomb, timer stops and it's game over
 });

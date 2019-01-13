@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import sampleStore from '../../sample-store.js';
+import { createTestBoard } from '@/helpers';
 
 Vue.use(Vuex);
 
@@ -64,5 +65,20 @@ describe('actions', () => {
     expect(store.state.board.length).toBe(store.state.gameOptions[difficulty].rows);
     expect(store.state.board[0].length).toBe(store.state.gameOptions[difficulty].columns);
     expect(bombCount).toBe(store.state.gameOptions[difficulty].bombs);
+  });
+
+  it('revealSurroundingCells', () => {
+    store.commit('addBoard', createTestBoard());
+
+    store.dispatch('revealSurroundingCells', store.state.board[0][0].surroundingCellCoordinates);
+
+    expect(store.state.board[0][1].isRevealed).toBeTruthy();
+    expect(store.state.board[0][2].isRevealed).toBeTruthy();
+    expect(store.state.board[1][0].isRevealed).toBeTruthy();
+    expect(store.state.board[1][1].isRevealed).toBeTruthy();
+    expect(store.state.board[1][2].isRevealed).toBeTruthy();
+    expect(store.state.board[2][0].isRevealed).toBeTruthy();
+    expect(store.state.board[2][1].isRevealed).toBeTruthy();
+    expect(store.state.board[2][2].isRevealed).toBeFalsy();
   });
 });
