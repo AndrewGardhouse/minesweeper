@@ -107,22 +107,21 @@ describe('Cell.vue', () => {
   });
 
   it('clicking cell shows content of cell', () => {
-    const flattenedBoard = [].concat.apply([], store.state.board);
-    const firstBomb = flattenedBoard.find((cell) => cell.isBomb);
-    const firstCellNearBomb = flattenedBoard.find((cell) => cell.surroundingBombCount > 0);
-    const firstCellNotNearBomb = flattenedBoard.find((cell) => cell.surroundingBombCount < 1);
+    const bombCell = store.state.board[2][2];
+    const cellNearBomb = store.state.board[1][2];
+    const cellNotNearBomb = store.state.board[0][0];
 
-    wrapper.setProps(firstBomb);
+    wrapper.setProps(bombCell);
     cellCover.trigger('click');
 
     expect(wrapper.find('.cell').text()).toBe('●');
 
-    wrapper.setProps(firstCellNearBomb);
+    wrapper.setProps(cellNearBomb);
     cellCover.trigger('click');
 
     expect(wrapper.find('.cell').text()).toBe('1');
 
-    wrapper.setProps(firstCellNotNearBomb);
+    wrapper.setProps(cellNotNearBomb);
     cellCover.trigger('click');
 
     expect(wrapper.find('.cell').text()).toBe('');
