@@ -126,6 +126,22 @@ describe('Cell.vue', () => {
 
     expect(wrapper.find('.cell').text()).toBe('');
   });
+
+  it('reveals surrounding cells when clicked if surroundingBombCount is 0 and the surrounding cell is not a bomb ', () => {
+    // surrounding Cells without bombs
+    cellCover.trigger('click');
+    wrapper.setProps({ isRevealed: store.state.board[0][0].isRevealed });
+
+    expect(wrapper.props().isRevealed).toBeTruthy();
+    expect(store.state.board[0][1].isRevealed).toBeTruthy();
+    expect(store.state.board[0][2].isRevealed).toBeTruthy();
+    expect(store.state.board[1][0].isRevealed).toBeTruthy();
+    expect(store.state.board[1][1].isRevealed).toBeTruthy();
+    expect(store.state.board[1][2].isRevealed).toBeTruthy();
+    expect(store.state.board[2][0].isRevealed).toBeTruthy();
+    expect(store.state.board[2][1].isRevealed).toBeTruthy();
+    expect(store.state.board[2][2].isRevealed).toBeFalsy();
+  });
   // clicking a cell reveals what the cell is
     // if it's the first cell revealed, it starts a game timer
     // if cell is revealed to be a bomb, timer stops and it's game over
