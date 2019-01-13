@@ -30,9 +30,9 @@ describe('Cell.vue', () => {
     // this is the first cell of the board
     expect(wrapper.vm.row).toBe(0);
     expect(wrapper.vm.column).toBe(0);
-    expect(wrapper.vm.isBomb).toBeFalsy();
+    expect(typeof wrapper.vm.isBomb).toBe('boolean');
     expect(wrapper.vm.isRevealed).toBeFalsy();
-    expect(wrapper.vm.surroundingBombCount).toBe(0);
+    expect(typeof wrapper.vm.surroundingBombCount).toBe('number');
     expect(wrapper.vm.surroundingCellCoordinates).toHaveLength(3);
   });
 
@@ -103,6 +103,28 @@ describe('Cell.vue', () => {
     wrapper.setProps({ isRevealed: store.state.board[0][0].isRevealed });
 
     expect(wrapper.find('.cell').classes('is-flagged')).toBeTruthy();
+  });
+
+  it('clicking cell shows content of cell', () => {
+    const flattenedBoard = [].concat.apply([], store.state.board);
+    const firstBomb = flattenedBoard.find((cell) => cell.isBomb);
+    const firstCellNearBomb = flattenedBoard.find((cell) => cell.surroundingBombCount > 0);
+    const firstCellNotNearBomb = flattenedBoard.find((cell) => cell.surroundingBombCount < 1);
+
+    wrapper.setProps(firstBomb);
+    cellCover.trigger('click');
+
+    expect(wrapper.find('.cell').text()).toBe('●');
+
+    wrapper.setProps(firstCellNearBomb);
+    cellCover.trigger('click');
+
+    expect(wrapper.find('.cell').text()).toBe('1');
+
+    wrapper.setProps(firstCellNotNearBomb);
+    cellCover.trigger('click');
+
+    expect(wrapper.find('.cell').text()).toBe('');
   });
   // clicking a cell reveals what the cell is
     // if it's the first cell revealed, it starts a game timer

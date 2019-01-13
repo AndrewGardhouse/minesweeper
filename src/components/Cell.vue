@@ -13,6 +13,8 @@
          @click.right.prevent="flagCell"
          @click.alt.prevent="flagCell">
     </button>
+    {{ cellContent }}
+    <!-- bomb: &#x25CF; -->
   </div>
 </template>
 
@@ -51,6 +53,19 @@ export default {
       possibleBomb: false,
       notSure: false,
     };
+  },
+  computed: {
+    cellContent() {
+      if (this.isBomb) {
+        return '●';
+      }
+
+      if (this.surroundingBombCount > 0) {
+        return this.surroundingBombCount;
+      } else {
+        return '';
+      }
+    },
   },
   methods: {
     ...mapMutations([

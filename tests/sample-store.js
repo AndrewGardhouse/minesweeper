@@ -9,7 +9,7 @@ export default {
       test: {
         columns: 3,
         rows: 3,
-        bombs: 0,
+        bombs: 1,
         optionText: 'Test (3x3, Add your own bombs)',
       },
       ...state.gameOptions,
