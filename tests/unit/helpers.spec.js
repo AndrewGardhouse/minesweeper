@@ -1,4 +1,4 @@
-import { createCell, createBoard, addBombsToBoard, getSurroundingCellCoordinates, getSurroundingBombCount } from '@/helpers';
+import { createCell, createBoard, addBombsToBoard, getSurroundingCellCoordinates, getSurroundingBombCount, createTestBoard } from '@/helpers';
 
 describe('helpers', () => {
   const getBombCount = (board) => {
@@ -81,5 +81,17 @@ describe('helpers', () => {
 
     expect(getSurroundingBombCount(board, board[2][2])).toBe(0);
     expect(getSurroundingBombCount(board, board[1][1])).toBe(1);
+  });
+
+  it('creates a board for tests', () => {
+    const board = createTestBoard();
+
+    // rows
+    expect(board.length).toBe(3)
+    // columns
+    expect(board[0].length).toBe(3)
+
+    expect(getBombCount(board)).toBe(1);
+    expect(board[2][2].isBomb).toBeTruthy();
   });
 })

@@ -110,3 +110,21 @@ export function getSurroundingBombCount(board, cell) {
     return bombCount;
   }, 0);
 }
+
+export function createTestBoard() {
+  let board = Array(3).fill().map((row, rowIndex) => {
+    return Array(3).fill().map((column, columnIndex) => createCell(rowIndex, columnIndex));
+  });
+
+  board[2][2].isBomb = true;
+
+  board = board.map((row) => {
+    return row.map((cell) => {
+      cell.surroundingCellCoordinates = getSurroundingCellCoordinates(board, cell);
+      cell.surroundingBombCount = getSurroundingBombCount(board, cell);
+      return cell;
+    });
+  });
+
+  return board;
+}
