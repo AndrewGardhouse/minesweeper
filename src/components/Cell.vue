@@ -75,9 +75,8 @@ export default {
       if (this.possibleBomb || this.notSure) {
         return;
       }
-      const [row, column] = [this.row, this.column];
 
-      this.revealCell({ row, column });
+      this.revealCell([this.row, this.column]);
     },
     flagCell() {
       if (!this.possibleBomb && !this.notSure) {

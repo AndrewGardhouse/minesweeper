@@ -8,8 +8,9 @@ export default {
     state.selectedDifficulty = difficulty;
   },
   revealCell(state, coordinates) {
-    const cell = state.board[coordinates.row][coordinates.column];
+    const [row, column] = coordinates;
+    const cell = state.board[row][column];
     cell.isRevealed = true;
-    Object.assign(state.board[coordinates.row][coordinates.column], cell);
+    Object.assign(state.board[row][column], cell);
   }
 };

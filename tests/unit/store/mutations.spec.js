@@ -35,10 +35,10 @@ describe('mutations', () => {
 
     expect(store.state.board[0][0].isRevealed).toBeFalsy();
 
-    store.commit('revealCell', {
-      row: store.state.board[0][0].row,
-      column: store.state.board[0][0].column,
-    });
+    store.commit('revealCell', [
+      store.state.board[0][0].row,
+      store.state.board[0][0].column,
+    ]);
 
     expect(store.state.board[0][0].isRevealed).toBeTruthy();
   });
