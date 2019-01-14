@@ -29,12 +29,14 @@ describe('Cell.vue', () => {
 
   it('should should have cell properties from board', () => {
     // this is the first cell of the board
-    expect(wrapper.vm.row).toBe(0);
-    expect(wrapper.vm.column).toBe(0);
-    expect(wrapper.vm.isBomb).toBe(false);
-    expect(wrapper.vm.isRevealed).toBeFalsy();
-    expect(wrapper.vm.surroundingBombCount).toBe(0);
-    expect(wrapper.vm.surroundingCellCoordinates).toHaveLength(3);
+    expect(wrapper.props().row).toBe(0);
+    expect(wrapper.props().column).toBe(0);
+    expect(wrapper.props().isBomb).toBe(false);
+    expect(wrapper.props().isRevealed).toBe(false);
+    expect(wrapper.props().isRevealed).toBe(false);
+    expect(wrapper.props().possibleBomb).toBe(false);
+    expect(wrapper.props().surroundingBombCount).toBe(0);
+    expect(wrapper.props().surroundingCellCoordinates).toHaveLength(3);
   });
 
   it('should reveal what the cell is when clicked and mark as isRevealed as true', () => {
@@ -50,14 +52,20 @@ describe('Cell.vue', () => {
 
   it('should flag cell as possible bomb or mystery and disable the cell cover button', () => {
     cellCover.trigger('contextmenu');
+    wrapper.setProps({ possibleBomb: store.state.board[0][0].possibleBomb });
+    wrapper.setProps({ notSure: store.state.board[0][0].notSure });
 
     expect(cellCover.classes('possible-bomb')).toBeTruthy();
 
     cellCover.trigger('contextmenu');
+    wrapper.setProps({ possibleBomb: store.state.board[0][0].possibleBomb });
+    wrapper.setProps({ notSure: store.state.board[0][0].notSure });
 
     expect(cellCover.classes('not-sure')).toBeTruthy();
 
     cellCover.trigger('contextmenu');
+    wrapper.setProps({ possibleBomb: store.state.board[0][0].possibleBomb });
+    wrapper.setProps({ notSure: store.state.board[0][0].notSure });
 
     expect(cellCover.classes('possible-bomb')).toBeFalsy();
     expect(cellCover.classes('not-sure')).toBeFalsy();
@@ -68,24 +76,30 @@ describe('Cell.vue', () => {
 
     // flagged as possible bomb
     cellCover.trigger('contextmenu');
-    cellCover.trigger('click');
+    wrapper.setProps({ possibleBomb: store.state.board[0][0].possibleBomb });
+    wrapper.setProps({ notSure: store.state.board[0][0].notSure });
 
+    cellCover.trigger('click');
     wrapper.setProps({ isRevealed: store.state.board[0][0].isRevealed });
 
     expect(wrapper.props().isRevealed).toBeFalsy();
 
     // flagged as not sure
     cellCover.trigger('contextmenu');
-    cellCover.trigger('click');
+    wrapper.setProps({ possibleBomb: store.state.board[0][0].possibleBomb });
+    wrapper.setProps({ notSure: store.state.board[0][0].notSure });
 
+    cellCover.trigger('click');
     wrapper.setProps({ isRevealed: store.state.board[0][0].isRevealed });
 
     expect(wrapper.props().isRevealed).toBeFalsy();
 
     // not flagged
     cellCover.trigger('contextmenu');
-    cellCover.trigger('click');
+    wrapper.setProps({ possibleBomb: store.state.board[0][0].possibleBomb });
+    wrapper.setProps({ notSure: store.state.board[0][0].notSure });
 
+    cellCover.trigger('click');
     wrapper.setProps({ isRevealed: store.state.board[0][0].isRevealed });
 
     expect(wrapper.props().isRevealed).toBeTruthy();
@@ -95,6 +109,8 @@ describe('Cell.vue', () => {
     expect(wrapper.find('.cell').classes('is-flagged-possible-bomb')).toBeFalsy();
 
     cellCover.trigger('contextmenu');
+    wrapper.setProps({ possibleBomb: store.state.board[0][0].possibleBomb });
+    wrapper.setProps({ notSure: store.state.board[0][0].notSure });
 
     store.commit('revealCell', [
       wrapper.props().row,
@@ -110,7 +126,12 @@ describe('Cell.vue', () => {
     expect(wrapper.find('.cell').classes('is-flagged-not-sure')).toBeFalsy();
 
     cellCover.trigger('contextmenu');
+    wrapper.setProps({ possibleBomb: store.state.board[0][0].possibleBomb });
+    wrapper.setProps({ notSure: store.state.board[0][0].notSure });
+
     cellCover.trigger('contextmenu');
+    wrapper.setProps({ possibleBomb: store.state.board[0][0].possibleBomb });
+    wrapper.setProps({ notSure: store.state.board[0][0].notSure });
 
     store.commit('revealCell', [
       wrapper.props().row,

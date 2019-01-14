@@ -13,6 +13,8 @@ export function createCell(row, column) {
     column,
     isBomb: false,
     isRevealed: false,
+    possibleBomb: false,
+    notSure: false,
     surroundingBombCount: null,
     surroundingCellCoordinates: [],
   };

@@ -47,12 +47,14 @@ export default {
       type: Array,
       required: true,
     },
-  },
-  data() {
-    return {
-      possibleBomb: false,
-      notSure: false,
-    };
+    possibleBomb: {
+      type: Boolean,
+      required: true,
+    },
+    notSure: {
+      type: Boolean,
+      required: true,
+    }
   },
   computed: {
     cellContent() {
@@ -71,6 +73,8 @@ export default {
   methods: {
     ...mapMutations([
       'revealCell',
+      'togglePossibleBomb',
+      'toggleNotSure',
     ]),
     ...mapActions([
       'revealSurroundingCells',
@@ -88,18 +92,22 @@ export default {
     },
     flagCell() {
       if (!this.possibleBomb && !this.notSure) {
-        this.possibleBomb = true;
+        // this.possibleBomb = true;
+        this.togglePossibleBomb([this.row, this.column]);
         return;
       }
 
       if (this.possibleBomb && !this.notSure) {
-        this.possibleBomb = false;
-        this.notSure = true;
+        // this.possibleBomb = false;
+        this.togglePossibleBomb([this.row, this.column]);
+        this.toggleNotSure([this.row, this.column]);
+        // this.notSure = true;
         return;
       }
 
       if (this.notSure) {
-        this.notSure = false;
+        // this.notSure = false;
+        this.toggleNotSure([this.row, this.column]);
       }
     },
   },

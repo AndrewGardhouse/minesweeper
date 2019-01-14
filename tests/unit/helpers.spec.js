@@ -13,8 +13,10 @@ describe('helpers', () => {
 
     expect(cell.row).toBe(row);
     expect(cell.column).toBe(column);
-    expect(cell.isBomb).toBeFalsy();
-    expect(cell.isRevealed).toBeFalsy();
+    expect(cell.isBomb).toBe(false);
+    expect(cell.isRevealed).toBe(false);
+    expect(cell.possibleBomb).toBe(false);
+    expect(cell.notSure).toBe(false);
     expect(cell.surroundingBombCount).toBeNull();
     expect(cell.surroundingCellCoordinates).toEqual([]);
   });

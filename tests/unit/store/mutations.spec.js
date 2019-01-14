@@ -42,4 +42,30 @@ describe('mutations', () => {
 
     expect(store.state.board[0][0].isRevealed).toBeTruthy();
   });
+
+  it('togglePossibleBomb', () => {
+    store.commit('setSelectedDifficulty', 'test');
+
+    expect(store.state.board[0][0].possibleBomb).toBeFalsy();
+
+    store.commit('togglePossibleBomb', [
+      store.state.board[0][0].row,
+      store.state.board[0][0].column,
+    ]);
+
+    expect(store.state.board[0][0].possibleBomb).toBeTruthy();
+  });
+
+  it('toggleNotSure', () => {
+    store.commit('setSelectedDifficulty', 'test');
+
+    expect(store.state.board[0][0].notSure).toBeFalsy();
+
+    store.commit('toggleNotSure', [
+      store.state.board[0][0].row,
+      store.state.board[0][0].column,
+    ]);
+
+    expect(store.state.board[0][0].notSure).toBeTruthy();
+  });
 })
