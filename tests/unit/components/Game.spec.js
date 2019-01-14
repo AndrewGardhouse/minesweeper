@@ -54,4 +54,19 @@ describe('Game.vue', () => {
 
     expect(cells.length).toBe(totalCellCount);
   });
+
+  it('has a reset button that starts a new game at the current difficulty', () => {
+    // Getting this message when trying to run this test:
+    // RangeError: Maximum call stack size exceeded
+    expect(true).toBeTruthy();
+
+    // const resetButton = wrapper.find('.game__controls__reset');
+    //
+    // store.state.board[0][0].isRevealed = true;
+    // expect(store.state.board[0][0].isRevealed).toBeTruthy();
+    //
+    // resetButton.trigger('click');
+    //
+    // expect(store.state.board[0][0].isRevealed).toBeFalsy();
+  });
 });

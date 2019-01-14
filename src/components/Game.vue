@@ -8,6 +8,10 @@
                 :selected="key === selectedDifficulty"
                 v-once>{{ value.optionText }}</option>
       </select>
+      <button type="button"
+              name="button"
+              class="game__controls__reset"
+              @click="resetGame">Reset</button>
       <!-- reset button -->
       <!-- game timer -->
     </div>
@@ -32,7 +36,7 @@ export default {
     Cell,
   },
   mounted() {
-    this.createBoard(this.selectedDifficulty);
+    this.resetGame();
   },
   computed: {
     ...mapState([
@@ -45,6 +49,9 @@ export default {
     ...mapActions([
       'createBoard',
     ]),
+    resetGame() {
+      this.createBoard(this.selectedDifficulty);
+    },
   },
 };
 </script>
