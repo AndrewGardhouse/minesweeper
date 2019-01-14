@@ -1,7 +1,8 @@
 <template>
   <div class="cell"
        :class="{
-         'is-flagged': (possibleBomb || notSure) && isRevealed
+         'is-flagged-possible-bomb': possibleBomb && isRevealed,
+         'is-flagged-not-sure': notSure && isRevealed,
        }">
     <button class="cell__cover-button"
          v-if="!isRevealed"
@@ -59,7 +60,7 @@ export default {
       if (this.surroundingBombCount > 0) {
         content = this.surroundingBombCount;
       }
-      
+
       if (this.isBomb) {
         content = '●';
       }
@@ -113,8 +114,14 @@ export default {
   height: 22px;
   margin: 1px;
   position: relative;
-  &.is-flagged {
+  &.is-flagged-possible-bomb, &.is-flagged-not-sure {
     border-style: dashed;
+  }
+  &.is-flagged-possible-bomb {
+    border-color: green;
+  }
+  &.is-flagged-not-sure {
+    border-color: blue;
   }
   &__cover-button {
     position: absolute;

@@ -91,8 +91,8 @@ describe('Cell.vue', () => {
     expect(wrapper.props().isRevealed).toBeTruthy();
   });
 
-  it('should have .is-flagged class if revealed while flagged', () => {
-    expect(wrapper.find('.cell').classes('is-flagged')).toBeFalsy();
+  it('should have .is-flagged-possible-bomb class if revealed while flagged as possibleBomb', () => {
+    expect(wrapper.find('.cell').classes('is-flagged-possible-bomb')).toBeFalsy();
 
     cellCover.trigger('contextmenu');
 
@@ -103,7 +103,23 @@ describe('Cell.vue', () => {
 
     wrapper.setProps({ isRevealed: store.state.board[0][0].isRevealed });
 
-    expect(wrapper.find('.cell').classes('is-flagged')).toBeTruthy();
+    expect(wrapper.find('.cell').classes('is-flagged-possible-bomb')).toBeTruthy();
+  });
+
+  it('should have .is-flagged-not-sure class if revealed while flagged as notSure', () => {
+    expect(wrapper.find('.cell').classes('is-flagged-not-sure')).toBeFalsy();
+
+    cellCover.trigger('contextmenu');
+    cellCover.trigger('contextmenu');
+
+    store.commit('revealCell', [
+      wrapper.props().row,
+      wrapper.props().column,
+    ]);
+
+    wrapper.setProps({ isRevealed: store.state.board[0][0].isRevealed });
+
+    expect(wrapper.find('.cell').classes('is-flagged-not-sure')).toBeTruthy();
   });
 
   it('clicking cell shows content of cell', () => {
