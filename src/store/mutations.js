@@ -12,5 +12,5 @@ export default {
     const cell = state.board[row][column];
     cell.isRevealed = true;
     Object.assign(state.board[row][column], cell);
-  }
+  },
 };

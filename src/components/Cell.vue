@@ -55,15 +55,16 @@ export default {
   },
   computed: {
     cellContent() {
+      let content = '';
       if (this.isBomb) {
-        return '●';
+        content = '●';
       }
 
       if (this.surroundingBombCount > 0) {
-        return this.surroundingBombCount;
-      } else {
-        return '';
+        content = this.surroundingBombCount;
       }
+
+      return content;
     },
   },
   methods: {
@@ -71,7 +72,7 @@ export default {
       'revealCell',
     ]),
     ...mapActions([
-      'revealSurroundingCells'
+      'revealSurroundingCells',
     ]),
     onClick() {
       if (this.possibleBomb || this.notSure) {
