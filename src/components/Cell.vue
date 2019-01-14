@@ -4,16 +4,18 @@
          'is-flagged-possible-bomb': possibleBomb && isRevealed,
          'is-flagged-not-sure': notSure && isRevealed,
        }">
-    <button class="cell__cover-button"
-         v-if="!isRevealed"
-         :class="{
-           'possible-bomb': possibleBomb,
-           'not-sure': notSure,
-         }"
-         @click.left="onClick"
-         @click.right.prevent="flagCell"
-         @click.alt.prevent="flagCell">
-    </button>
+    <transition name="fade">
+      <button class="cell__cover-button"
+           v-if="!isRevealed"
+           :class="{
+             'possible-bomb': possibleBomb,
+             'not-sure': notSure,
+           }"
+           @click.left="onClick"
+           @click.right.prevent="flagCell"
+           @click.alt.prevent="flagCell">
+      </button>
+    </transition>
     {{ cellContent }}
   </div>
 </template>
@@ -92,21 +94,17 @@ export default {
     },
     flagCell() {
       if (!this.possibleBomb && !this.notSure) {
-        // this.possibleBomb = true;
         this.togglePossibleBomb([this.row, this.column]);
         return;
       }
 
       if (this.possibleBomb && !this.notSure) {
-        // this.possibleBomb = false;
         this.togglePossibleBomb([this.row, this.column]);
         this.toggleNotSure([this.row, this.column]);
-        // this.notSure = true;
         return;
       }
 
       if (this.notSure) {
-        // this.notSure = false;
         this.toggleNotSure([this.row, this.column]);
       }
     },
@@ -163,6 +161,15 @@ export default {
         font-weight: bold;
       }
     }
+  }
+  .fade-enter-active {
+    transition: none;
+  }
+  .fade-leave-active {
+    transition: opacity .2s;
+  }
+  .fade-leave-to {
+    opacity: 0;
   }
 }
 </style>
