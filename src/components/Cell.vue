@@ -56,12 +56,12 @@ export default {
   computed: {
     cellContent() {
       let content = '';
-      if (this.isBomb) {
-        content = '●';
-      }
-
       if (this.surroundingBombCount > 0) {
         content = this.surroundingBombCount;
+      }
+      
+      if (this.isBomb) {
+        content = '●';
       }
 
       return content;
