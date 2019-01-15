@@ -22,4 +22,7 @@ export default {
       }
     });
   },
+  revealAllBombs({ commit, getters }) {
+    getters.allBombs.forEach(cell => commit('revealCell', [cell.row, cell.column]));
+  },
 };

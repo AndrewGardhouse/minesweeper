@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { mapMutations, mapActions, mapGetters, mapState } from 'vuex';
+import { mapMutations, mapActions, mapGetters } from 'vuex';
 
 export default {
   props: {
@@ -69,10 +69,11 @@ export default {
   computed: {
     ...mapGetters([
       'gameWon',
-    ]),
-    ...mapState([
       'gameOver',
     ]),
+    // ...mapState([
+    //   'gameOver',
+    // ]),
     cellContent() {
       let content = '';
       if (this.surroundingBombCount > 0) {
@@ -91,22 +92,22 @@ export default {
       'revealCell',
       'togglePossibleBomb',
       'toggleNotSure',
-      'toggleGameOver',
     ]),
     ...mapActions([
       'revealSurroundingCells',
+      'revealAllBombs',
     ]),
     onClick() {
       if (this.possibleBomb || this.notSure) {
         return;
       }
 
+      this.revealCell([this.row, this.column]);
+
       if (this.isBomb) {
-        this.toggleGameOver(true);
+        this.revealAllBombs();
         return;
       }
-
-      this.revealCell([this.row, this.column]);
 
       if (!this.isBomb && this.surroundingBombCount < 1) {
         this.revealSurroundingCells(this.surroundingCellCoordinates);

@@ -34,4 +34,12 @@ describe('getters', () => {
 
     expect(store.getters.gameWon).toBe(true);
   });
+
+  it('gameOver', () => {
+    expect(store.getters.gameOver).toBe(false);
+
+    store.commit('revealCell', [store.state.board[2][2].row, store.state.board[2][2].column]);
+
+    expect(store.getters.gameOver).toBe(true);
+  });
 });

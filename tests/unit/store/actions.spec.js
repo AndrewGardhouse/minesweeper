@@ -81,4 +81,20 @@ describe('actions', () => {
     expect(store.state.board[2][1].isRevealed).toBeTruthy();
     expect(store.state.board[2][2].isRevealed).toBeFalsy();
   });
+
+  it('revealAllBombs', () => {
+    store.commit('addBoard', createTestBoard());
+
+    store.dispatch('revealAllBombs');
+
+    expect(store.state.board[0][0].isRevealed).toBeFalsy();
+    expect(store.state.board[0][1].isRevealed).toBeFalsy();
+    expect(store.state.board[0][2].isRevealed).toBeFalsy();
+    expect(store.state.board[1][0].isRevealed).toBeFalsy();
+    expect(store.state.board[1][1].isRevealed).toBeFalsy();
+    expect(store.state.board[1][2].isRevealed).toBeFalsy();
+    expect(store.state.board[2][0].isRevealed).toBeFalsy();
+    expect(store.state.board[2][1].isRevealed).toBeFalsy();
+    expect(store.state.board[2][2].isRevealed).toBeTruthy();
+  });
 });

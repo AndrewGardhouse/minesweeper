@@ -1,6 +1,5 @@
 export default {
   selectedDifficulty: 'easy',
-  gameOver: false,
   gameOptions: {
     easy: {
       columns: 9,

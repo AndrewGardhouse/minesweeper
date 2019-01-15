@@ -12,4 +12,7 @@ export default {
     // return true if all cells without bombs are revealed
     return [].concat.apply([], state.board).filter(cell => cell.isRevealed && !cell.isBomb).length === getters.totalBombFreeCells;
   },
+  gameOver(state, getters) {
+    return getters.allBombs.every(cell => cell.isRevealed);
+  }
 };

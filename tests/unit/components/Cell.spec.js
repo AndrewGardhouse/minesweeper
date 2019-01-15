@@ -18,7 +18,6 @@ describe('Cell.vue', () => {
 
     store.commit('addBoard', createTestBoard());
     store.commit('setSelectedDifficulty', 'test');
-    store.commit('toggleGameOver', false);
 
     wrapper = shallowMount(Cell, {
       propsData: store.state.board[0][0],

@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapMutations } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import Cell from '@/components/Cell.vue';
 
 export default {
@@ -48,12 +48,8 @@ export default {
     ...mapActions([
       'createBoard',
     ]),
-    ...mapMutations([
-      'toggleGameOver',
-    ]),
     resetGame() {
       this.createBoard(this.selectedDifficulty);
-      this.toggleGameOver(false);
     },
   },
 };

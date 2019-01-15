@@ -25,7 +25,4 @@ export default {
     cell.notSure = !cell.notSure;
     Object.assign(state.board[row][column], cell);
   },
-  toggleGameOver(state, isGameOver) {
-    state.gameOver = isGameOver;
-  }
 };
