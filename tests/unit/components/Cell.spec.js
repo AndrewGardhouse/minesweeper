@@ -18,6 +18,7 @@ describe('Cell.vue', () => {
 
     store.commit('addBoard', createTestBoard());
     store.commit('setSelectedDifficulty', 'test');
+    store.commit('toggleGameOver', false);
 
     wrapper = shallowMount(Cell, {
       propsData: store.state.board[0][0],
@@ -146,14 +147,8 @@ describe('Cell.vue', () => {
   });
 
   it('clicking cell shows content of cell', () => {
-    const bombCell = store.state.board[2][2];
     const cellNearBomb = store.state.board[1][2];
     const cellNotNearBomb = store.state.board[0][0];
-
-    wrapper.setProps(bombCell);
-    cellCover.trigger('click');
-
-    expect(wrapper.find('.cell').text()).toBe('●');
 
     wrapper.setProps(cellNearBomb);
     cellCover.trigger('click');
