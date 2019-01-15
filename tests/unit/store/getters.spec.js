@@ -17,4 +17,21 @@ describe('actions', () => {
     expect(store.getters.allBombs).toHaveLength(1);
     expect(store.getters.allBombs).toContainEqual(store.state.board[2][2]);
   });
+
+  it('totalBombFreeCells', () => {
+    store.dispatch('createBoard', 'test');
+
+    const bombFreeCells = 8;
+
+    expect(store.getters.totalBombFreeCells).toBe(bombFreeCells);
+  });
+
+  it('allNonBombsRevealed', () => {
+    expect(store.getters.allNonBombsRevealed).toBe(false);
+
+    store.commit('revealCell', [store.state.board[0][0].row, store.state.board[0][0].column]);
+    store.dispatch('revealSurroundingCells', store.state.board[0][0].surroundingCellCoordinates);
+
+    expect(store.getters.allNonBombsRevealed).toBe(true);
+  });
 });
