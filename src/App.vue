@@ -23,4 +23,14 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
+
+.fade-enter-active {
+  transition: none;
+}
+.fade-leave-active {
+  transition: opacity .2s;
+}
+.fade-leave-to {
+  opacity: 0;
+}
 </style>

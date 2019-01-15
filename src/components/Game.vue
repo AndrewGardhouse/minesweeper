@@ -14,7 +14,11 @@
               @click="resetGame">Reset</button>
       <!-- game timer -->
     </div>
-    <div class="game__board">
+    <div class="game__board"
+         :class="{
+           'game-over': gameOver,
+           'game-won': gameWon,
+         }">
       <div v-for="(row, rowIndex) in board"
            :key="rowIndex"
            class="game__board__row">
@@ -23,11 +27,19 @@
               v-bind="cell" />
       </div>
     </div>
+    <transition name="fade">
+      <div class="game__message game__message--win" v-if="gameWon">
+        You're a Winner!
+      </div>
+      <div class="game__message game__message--lose" v-if="gameOver">
+        Game Over.
+      </div>
+    </transition>
   </div>
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapActions, mapGetters } from 'vuex';
 import Cell from '@/components/Cell.vue';
 
 export default {
@@ -42,6 +54,10 @@ export default {
       'gameOptions',
       'board',
       'selectedDifficulty',
+    ]),
+    ...mapGetters([
+      'gameWon',
+      'gameOver',
     ]),
   },
   methods: {
@@ -64,8 +80,25 @@ export default {
     display: inline-block;
     padding: 1.5px;
     border: solid 3px dimgray;
+    transition: border-color 0.3s;
+    margin-bottom: 15px;
+    &.game-over {
+      border-color: red;
+    }
+    &.game-won {
+      border-color: green;
+    }
     &__row {
       display: flex;
+    }
+  }
+  .game__message {
+    font-weight: bold;
+    &--win {
+      color: green;
+    }
+    &--lose {
+      color: red;
     }
   }
 }

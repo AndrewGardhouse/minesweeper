@@ -68,9 +68,6 @@ export default {
       'gameWon',
       'gameOver',
     ]),
-    // ...mapState([
-    //   'gameOver',
-    // ]),
     cellContent() {
       let content = '';
       if (this.surroundingBombCount > 0) {
@@ -186,15 +183,6 @@ export default {
         font-weight: bold;
       }
     }
-  }
-  .fade-enter-active {
-    transition: none;
-  }
-  .fade-leave-active {
-    transition: opacity .2s;
-  }
-  .fade-leave-to {
-    opacity: 0;
   }
 }
 </style>
