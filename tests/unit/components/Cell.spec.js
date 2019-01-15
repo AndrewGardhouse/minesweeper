@@ -214,6 +214,7 @@ describe('Cell.vue', () => {
 
     expect(cellCover.attributes('disabled')).toBeTruthy();
     expect(cellCover.classes('game-won')).toBeTruthy();
+    expect(cellCover.find('span').text()).toBe('●');
   });
 
   // if it's the first cell revealed, it starts a game timer

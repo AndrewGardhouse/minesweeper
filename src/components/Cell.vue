@@ -16,6 +16,7 @@
            @click.left="onClick"
            @click.right.prevent="flagCell"
            @click.alt.prevent="flagCell">
+          <span v-if="gameWon">&#9679;</span>
       </button>
     </transition>
     {{ cellContent }}
@@ -146,6 +147,7 @@ export default {
     width: 100%;
     background-color: grey;
     padding: 0;
+    color: white;
     cursor: pointer;
     &:focus {
       outline: none;
