@@ -41,6 +41,10 @@ export default {
       type: Boolean,
       required: true,
     },
+    isDisabled: {
+      type: Boolean,
+      required: true,
+    },
     surroundingBombCount: {
       type: Number,
       required: true,
@@ -56,7 +60,7 @@ export default {
     notSure: {
       type: Boolean,
       required: true,
-    }
+    },
   },
   computed: {
     cellContent() {

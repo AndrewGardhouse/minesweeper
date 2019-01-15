@@ -33,8 +33,9 @@ describe('Cell.vue', () => {
     expect(wrapper.props().column).toBe(0);
     expect(wrapper.props().isBomb).toBe(false);
     expect(wrapper.props().isRevealed).toBe(false);
-    expect(wrapper.props().isRevealed).toBe(false);
+    expect(wrapper.props().isDisabled).toBe(false);
     expect(wrapper.props().possibleBomb).toBe(false);
+    expect(wrapper.props().notSure).toBe(false);
     expect(wrapper.props().surroundingBombCount).toBe(0);
     expect(wrapper.props().surroundingCellCoordinates).toHaveLength(3);
   });

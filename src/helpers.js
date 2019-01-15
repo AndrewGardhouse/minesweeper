@@ -13,6 +13,7 @@ export function createCell(row, column) {
     column,
     isBomb: false,
     isRevealed: false,
+    isDisabled: false,
     possibleBomb: false,
     notSure: false,
     surroundingBombCount: null,

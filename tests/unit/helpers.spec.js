@@ -17,6 +17,7 @@ describe('helpers', () => {
     expect(cell.isRevealed).toBe(false);
     expect(cell.possibleBomb).toBe(false);
     expect(cell.notSure).toBe(false);
+    expect(cell.isDisabled).toBe(false);
     expect(cell.surroundingBombCount).toBeNull();
     expect(cell.surroundingCellCoordinates).toEqual([]);
   });
