@@ -26,12 +26,12 @@ describe('actions', () => {
     expect(store.getters.totalBombFreeCells).toBe(bombFreeCells);
   });
 
-  it('allNonBombsRevealed', () => {
-    expect(store.getters.allNonBombsRevealed).toBe(false);
+  it('gameWon', () => {
+    expect(store.getters.gameWon).toBe(false);
 
     store.commit('revealCell', [store.state.board[0][0].row, store.state.board[0][0].column]);
     store.dispatch('revealSurroundingCells', store.state.board[0][0].surroundingCellCoordinates);
 
-    expect(store.getters.allNonBombsRevealed).toBe(true);
+    expect(store.getters.gameWon).toBe(true);
   });
 });

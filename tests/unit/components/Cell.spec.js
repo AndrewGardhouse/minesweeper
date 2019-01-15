@@ -17,6 +17,7 @@ describe('Cell.vue', () => {
     store = new Vuex.Store(sampleStore)
 
     store.commit('addBoard', createTestBoard());
+    store.commit('setSelectedDifficulty', 'test');
 
     wrapper = shallowMount(Cell, {
       propsData: store.state.board[0][0],
@@ -206,6 +207,15 @@ describe('Cell.vue', () => {
       expect(store.state.board[row][column].isRevealed).toBeFalsy();
     });
   });
+
+  it('changes gameWon to true when all cells that are not bombs are revealed', () => {
+    cellCover.trigger('click');
+    wrapper.setProps(store.state.board[2][2]);
+
+    expect(cellCover.attributes('disabled')).toBeTruthy();
+    expect(cellCover.classes('game-won')).toBeTruthy();
+  });
+
   // if it's the first cell revealed, it starts a game timer
   // if cell is revealed to be a bomb, timer stops and it's game over
 });

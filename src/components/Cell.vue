@@ -10,7 +10,9 @@
            :class="{
              'possible-bomb': possibleBomb,
              'not-sure': notSure,
+             'game-won': gameWon,
            }"
+           :disabled="gameWon"
            @click.left="onClick"
            @click.right.prevent="flagCell"
            @click.alt.prevent="flagCell">
@@ -21,7 +23,7 @@
 </template>
 
 <script>
-import { mapMutations, mapActions } from 'vuex';
+import { mapMutations, mapActions, mapGetters } from 'vuex';
 
 export default {
   props: {
@@ -63,6 +65,9 @@ export default {
     },
   },
   computed: {
+    ...mapGetters([
+      'gameWon',
+    ]),
     cellContent() {
       let content = '';
       if (this.surroundingBombCount > 0) {
@@ -144,6 +149,9 @@ export default {
     cursor: pointer;
     &:focus {
       outline: none;
+    }
+    &.game-won {
+      background-color: green;
     }
     &.possible-bomb, &.not-sure {
       color: white;
