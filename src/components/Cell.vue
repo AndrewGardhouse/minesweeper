@@ -11,12 +11,13 @@
              'possible-bomb': possibleBomb,
              'not-sure': notSure,
              'game-won': gameWon,
+             'game-over': gameOver && isBomb,
            }"
-           :disabled="gameWon"
+           :disabled="gameWon || gameOver"
            @click.left="onClick"
            @click.right.prevent="flagCell"
            @click.alt.prevent="flagCell">
-          <span v-if="gameWon">&#9679;</span>
+          <span v-if="gameWon || (gameOver && isBomb)">&#9679;</span>
       </button>
     </transition>
     {{ cellContent }}
@@ -24,7 +25,7 @@
 </template>
 
 <script>
-import { mapMutations, mapActions, mapGetters } from 'vuex';
+import { mapMutations, mapActions, mapGetters, mapState } from 'vuex';
 
 export default {
   props: {
@@ -69,6 +70,9 @@ export default {
     ...mapGetters([
       'gameWon',
     ]),
+    ...mapState([
+      'gameOver',
+    ]),
     cellContent() {
       let content = '';
       if (this.surroundingBombCount > 0) {
@@ -87,12 +91,18 @@ export default {
       'revealCell',
       'togglePossibleBomb',
       'toggleNotSure',
+      'toggleGameOver',
     ]),
     ...mapActions([
       'revealSurroundingCells',
     ]),
     onClick() {
       if (this.possibleBomb || this.notSure) {
+        return;
+      }
+
+      if (this.isBomb) {
+        this.toggleGameOver(true);
         return;
       }
 
@@ -154,6 +164,9 @@ export default {
     }
     &.game-won {
       background-color: green;
+    }
+    &.game-over {
+      background-color: red;
     }
     &.possible-bomb, &.not-sure {
       color: white;

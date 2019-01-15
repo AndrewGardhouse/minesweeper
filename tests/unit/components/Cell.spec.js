@@ -217,6 +217,15 @@ describe('Cell.vue', () => {
     expect(cellCover.find('span').text()).toBe('●');
   });
 
+  it('ends game when a bomb is clicked', () => {
+    wrapper.setProps(store.state.board[2][2]);
+    cellCover.trigger('click');
+
+    expect(cellCover.attributes('disabled')).toBeTruthy();
+    expect(cellCover.classes('game-over')).toBeTruthy();
+    expect(cellCover.find('span').text()).toBe('●');
+  });
+
   // if it's the first cell revealed, it starts a game timer
   // if cell is revealed to be a bomb, timer stops and it's game over
 });

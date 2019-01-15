@@ -68,4 +68,12 @@ describe('mutations', () => {
 
     expect(store.state.board[0][0].notSure).toBeTruthy();
   });
+
+  it('toggleGameOver', () => {
+    expect(store.state.gameOver).toBe(false);
+
+    store.commit('toggleGameOver', true);
+
+    expect(store.state.gameOver).toBe(true);
+  });
 })

@@ -5,7 +5,7 @@ import { createTestBoard } from '@/helpers';
 
 Vue.use(Vuex);
 
-describe('actions', () => {
+describe('getters', () => {
   let store;
 
   beforeEach(() => {
