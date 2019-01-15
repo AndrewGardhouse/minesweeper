@@ -10,14 +10,11 @@
            :class="{
              'possible-bomb': possibleBomb,
              'not-sure': notSure,
-             'game-won': gameWon,
-             'game-over': gameOver && isBomb,
            }"
            :disabled="gameWon || gameOver"
            @click.left="onClick"
            @click.right.prevent="flagCell"
            @click.alt.prevent="flagCell">
-          <span v-if="gameWon || (gameOver && isBomb)">&#9679;</span>
       </button>
     </transition>
     {{ cellContent }}
