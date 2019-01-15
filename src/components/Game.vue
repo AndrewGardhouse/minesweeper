@@ -12,7 +12,6 @@
               name="button"
               class="game__controls__reset"
               @click="resetGame">Reset</button>
-      <!-- reset button -->
       <!-- game timer -->
     </div>
     <div class="game__board">
