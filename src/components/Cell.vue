@@ -1,6 +1,7 @@
 <template>
   <div class="cell"
        :class="{
+         'is-flagged-bomb-game-over': possibleBomb && isBomb && isRevealed && gameOver,
          'is-flagged-possible-bomb': possibleBomb && isRevealed,
          'is-flagged-not-sure': notSure && isRevealed,
        }">
@@ -135,6 +136,10 @@ export default {
   height: 22px;
   margin: 1px;
   position: relative;
+  &.is-flagged-bomb-game-over {
+    background-color: green;
+    color: white;
+  }
   &.is-flagged-possible-bomb, &.is-flagged-not-sure {
     border-style: dashed;
   }
