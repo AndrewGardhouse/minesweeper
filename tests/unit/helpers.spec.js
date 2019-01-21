@@ -97,4 +97,12 @@ describe('helpers', () => {
     expect(getBombCount(board)).toBe(1);
     expect(board[2][2].isBomb).toBeTruthy();
   });
+
+  it('bomb cells do not have surroundingBombCount or surroundingCellCoordinates', () => {
+    const board = createTestBoard();
+
+    expect(board[2][2].isBomb).toBeTruthy();
+    expect(board[2][2].surroundingBombCount).toBeNull();
+    expect(board[2][2].surroundingCellCoordinates).toHaveLength(0);
+  });
 })

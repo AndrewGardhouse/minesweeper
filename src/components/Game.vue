@@ -79,7 +79,7 @@ export default {
   &__board {
     display: inline-block;
     padding: 1.5px;
-    border: solid 3px dimgray;
+    border: solid 5px dimgray;
     transition: border-color 0.3s;
     margin-bottom: 15px;
     &.game-over {

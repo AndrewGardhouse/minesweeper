@@ -32,8 +32,10 @@ export function createBoard(rows, columns, bombs = null) {
 
   board = board.map((row) => {
     return row.map((cell) => {
-      cell.surroundingCellCoordinates = getSurroundingCellCoordinates(board, cell);
-      cell.surroundingBombCount = getSurroundingBombCount(board, cell);
+      if (!cell.isBomb) {
+        cell.surroundingCellCoordinates = getSurroundingCellCoordinates(board, cell);
+        cell.surroundingBombCount = getSurroundingBombCount(board, cell);
+      }
       return cell;
     });
   });
@@ -123,8 +125,10 @@ export function createTestBoard() {
 
   board = board.map((row) => {
     return row.map((cell) => {
-      cell.surroundingCellCoordinates = getSurroundingCellCoordinates(board, cell);
-      cell.surroundingBombCount = getSurroundingBombCount(board, cell);
+      if (!cell.isBomb) {
+        cell.surroundingCellCoordinates = getSurroundingCellCoordinates(board, cell);
+        cell.surroundingBombCount = getSurroundingBombCount(board, cell);
+      }
       return cell;
     });
   });

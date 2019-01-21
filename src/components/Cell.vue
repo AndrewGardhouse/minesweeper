@@ -49,11 +49,11 @@ export default {
     },
     surroundingBombCount: {
       type: Number,
-      required: true,
+      required: false,
     },
     surroundingCellCoordinates: {
       type: Array,
-      required: true,
+      required: false,
     },
     possibleBomb: {
       type: Boolean,
@@ -130,12 +130,18 @@ export default {
 
 <style lang="scss">
 .cell {
+  background-color: whitesmoke;
   border: 1px solid grey;
   border-radius: 2px;
   width: 22px;
   height: 22px;
   margin: 1px;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: bold;
   &.is-flagged-bomb-game-over {
     background-color: green;
     color: white;
