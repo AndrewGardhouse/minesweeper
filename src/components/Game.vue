@@ -24,7 +24,9 @@
            class="game__board__row">
         <Cell v-for="(cell, cellIndex) in row"
               :key="cellIndex"
-              v-bind="cell" />
+              v-bind="cell"
+              :gameWon="gameWon"
+              :gameOver="gameOver" />
       </div>
     </div>
     <transition name="fade">
@@ -79,14 +81,14 @@ export default {
   &__board {
     display: inline-block;
     padding: 1.5px;
-    border: solid 5px dimgray;
+    border: solid 5px lightslategrey;
     transition: border-color 0.3s;
     margin-bottom: 15px;
     &.game-over {
       border-color: red;
     }
     &.game-won {
-      border-color: green;
+      border-color: limegreen;
     }
     &__row {
       display: flex;

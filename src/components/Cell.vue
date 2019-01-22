@@ -18,12 +18,16 @@
            @click.alt.prevent="flagCell">
       </button>
     </transition>
-    {{ cellContent }}
+    <span class="cell__content"
+          :class="`cell__content--${surroundingBombCount}-bombs`"
+          v-if="cellContent">
+      {{ cellContent }}
+    </span>
   </div>
 </template>
 
 <script>
-import { mapMutations, mapActions, mapGetters } from 'vuex';
+import { mapMutations, mapActions } from 'vuex';
 
 export default {
   props: {
@@ -63,12 +67,16 @@ export default {
       type: Boolean,
       required: true,
     },
+    gameWon: {
+      type: Boolean,
+      required: true,
+    },
+    gameOver: {
+      type: Boolean,
+      required: true,
+    }
   },
   computed: {
-    ...mapGetters([
-      'gameWon',
-      'gameOver',
-    ]),
     cellContent() {
       let content = '';
       if (this.surroundingBombCount > 0) {
@@ -131,7 +139,7 @@ export default {
 <style lang="scss">
 .cell {
   background-color: whitesmoke;
-  border: 1px solid grey;
+  border: 1px solid lightslategrey;
   border-radius: 2px;
   width: 22px;
   height: 22px;
@@ -155,13 +163,39 @@ export default {
   &.is-flagged-not-sure {
     border-color: blue;
   }
+  &__content {
+    &--1-bombs {
+      color: royalblue;
+    }
+    &--2-bombs {
+      color: forestgreen;
+    }
+    &--3-bombs {
+      color: orangered;
+    }
+    &--4-bombs {
+      color: darkblue;
+    }
+    &--5-bombs {
+      color: saddlebrown;
+    }
+    &--6-bombs {
+      color: darkcyan;
+    }
+    &--7-bombs {
+      color: black;
+    }
+    &--8-bombs {
+      color: slategrey;
+    }
+  }
   &__cover-button {
     position: absolute;
     left: 0;
     border:none;
     height: 100%;
     width: 100%;
-    background-color: grey;
+    background-color: lightslategrey;
     padding: 0;
     color: white;
     cursor: pointer;
