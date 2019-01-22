@@ -226,6 +226,14 @@ describe('Cell.vue', () => {
     expect(cellCover.attributes('disabled')).toBeTruthy();
   });
 
+  it('cellContentClass should return the correct class', () => {
+    wrapper.setProps(store.state.board[1][1]);
+    expect(wrapper.vm.cellContentClass).toBe('cell__content--1-bomb');
+
+    wrapper.setProps(store.state.board[2][2]);
+    expect(wrapper.vm.cellContentClass).toBe('cell__content--is-bomb');
+  });
+
   // if it's the first cell revealed, it starts a game timer
   // if cell is revealed to be a bomb, timer stops and it's game over
 });

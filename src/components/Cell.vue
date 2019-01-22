@@ -19,7 +19,7 @@
       </button>
     </transition>
     <span class="cell__content"
-          :class="`cell__content--${surroundingBombCount}-bombs`"
+          :class="cellContentClass"
           v-if="cellContent">
       {{ cellContent }}
     </span>
@@ -88,6 +88,19 @@ export default {
       }
 
       return content;
+    },
+    cellContentClass() {
+      let contentClass = 'cell__content--is-bomb';
+
+      if (this.surroundingBombCount > 0) {
+        if (this.surroundingBombCount == 1) {
+          contentClass = 'cell__content--1-bomb';
+        } else {
+          contentClass = `cell__content--${this.surroundingBombCount}-bombs`;
+        }
+      }
+
+      return contentClass;
     },
   },
   methods: {
@@ -164,7 +177,10 @@ export default {
     border-color: blue;
   }
   &__content {
-    &--1-bombs {
+    &--is-bomb {
+      font-size: 18px;
+    }
+    &--1-bomb {
       color: royalblue;
     }
     &--2-bombs {
