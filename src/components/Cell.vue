@@ -1,7 +1,6 @@
 <template>
   <div class="cell"
        :class="{
-         'cell--is-flagged-bomb-game-over': possibleBomb && isBomb && isRevealed && gameOver,
          'cell--is-flagged-possible-bomb': possibleBomb && isRevealed,
          'cell--is-flagged-not-sure': notSure && isRevealed,
        }">
@@ -12,7 +11,6 @@
              'cell__button--possible-bomb': possibleBomb,
              'cell__button--not-sure': notSure,
            }"
-           :disabled="gameWon || gameOver"
            @click.left="onClick"
            @click.right.prevent="flagCell"
            @click.alt.prevent="flagCell">
@@ -67,14 +65,6 @@ export default {
       type: Boolean,
       required: true,
     },
-    gameWon: {
-      type: Boolean,
-      required: true,
-    },
-    gameOver: {
-      type: Boolean,
-      required: true,
-    }
   },
   computed: {
     cellContent() {
@@ -157,6 +147,7 @@ export default {
   width: 22px;
   height: 22px;
   margin: 1px;
+  padding: 1px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -168,7 +159,8 @@ export default {
     color: white;
   }
   &--is-flagged-possible-bomb, &--is-flagged-not-sure {
-    border-style: dashed;
+    border-width: 2px;
+    padding: 0;
   }
   &--is-flagged-possible-bomb {
     border-color: green;

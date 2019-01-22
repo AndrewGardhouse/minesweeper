@@ -206,26 +206,6 @@ describe('Cell.vue', () => {
     });
   });
 
-  it('changes gameWon to true when all cells that are not bombs are revealed', () => {
-    cellCover.trigger('click');
-    wrapper.setProps({
-      gameOver: store.getters.gameOver,
-      gameWon: store.getters.gameWon,
-      ...store.state.board[2][2],
-    });
-
-    expect(cellCover.attributes('disabled')).toBeTruthy();
-  });
-
-  it('ends game when a bomb is clicked', () => {
-    wrapper.setProps(store.state.board[2][2]);
-
-    cellCover.trigger('click');
-    wrapper.setProps({ gameOver: store.getters.gameOver });
-
-    expect(cellCover.attributes('disabled')).toBeTruthy();
-  });
-
   it('cellContentClass should return the correct class', () => {
     wrapper.setProps(store.state.board[1][1]);
     expect(wrapper.vm.cellContentClass).toBe('cell__content--1-bomb');
