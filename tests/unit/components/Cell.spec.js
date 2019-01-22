@@ -29,7 +29,7 @@ describe('Cell.vue', () => {
       localVue,
     });
     wrapper.vm.workers = [{}];
-    cellCover = wrapper.find('.cell__cover-button');
+    cellCover = wrapper.find('.cell__button');
   });
 
   it('should should have cell properties from board', () => {
@@ -53,7 +53,7 @@ describe('Cell.vue', () => {
     wrapper.setProps({ isRevealed: store.state.board[0][0].isRevealed });
 
     expect(wrapper.props().isRevealed).toBeTruthy();
-    expect(wrapper.find('.cell__cover-button').exists()).toBeFalsy();
+    expect(wrapper.find('.cell__button').exists()).toBeFalsy();
   });
 
   it('should flag cell as possible bomb or mystery and disable the cell cover button', () => {
@@ -61,20 +61,20 @@ describe('Cell.vue', () => {
     wrapper.setProps({ possibleBomb: store.state.board[0][0].possibleBomb });
     wrapper.setProps({ notSure: store.state.board[0][0].notSure });
 
-    expect(cellCover.classes('possible-bomb')).toBeTruthy();
+    expect(cellCover.classes('cell__button--possible-bomb')).toBeTruthy();
 
     cellCover.trigger('contextmenu');
     wrapper.setProps({ possibleBomb: store.state.board[0][0].possibleBomb });
     wrapper.setProps({ notSure: store.state.board[0][0].notSure });
 
-    expect(cellCover.classes('not-sure')).toBeTruthy();
+    expect(cellCover.classes('cell__button--not-sure')).toBeTruthy();
 
     cellCover.trigger('contextmenu');
     wrapper.setProps({ possibleBomb: store.state.board[0][0].possibleBomb });
     wrapper.setProps({ notSure: store.state.board[0][0].notSure });
 
-    expect(cellCover.classes('possible-bomb')).toBeFalsy();
-    expect(cellCover.classes('not-sure')).toBeFalsy();
+    expect(cellCover.classes('cell__button--possible-bomb')).toBeFalsy();
+    expect(cellCover.classes('cell__button--not-sure')).toBeFalsy();
   });
 
   it('should not be able to reveal cell if flagged', () => {
@@ -112,7 +112,7 @@ describe('Cell.vue', () => {
   });
 
   it('should have .is-flagged-possible-bomb class if revealed while flagged as possibleBomb', () => {
-    expect(wrapper.find('.cell').classes('is-flagged-possible-bomb')).toBeFalsy();
+    expect(wrapper.find('.cell').classes('cell__button--is-flagged-possible-bomb')).toBeFalsy();
 
     cellCover.trigger('contextmenu');
     wrapper.setProps({ possibleBomb: store.state.board[0][0].possibleBomb });
@@ -125,11 +125,11 @@ describe('Cell.vue', () => {
 
     wrapper.setProps({ isRevealed: store.state.board[0][0].isRevealed });
 
-    expect(wrapper.find('.cell').classes('is-flagged-possible-bomb')).toBeTruthy();
+    expect(wrapper.find('.cell').classes('cell--is-flagged-possible-bomb')).toBeTruthy();
   });
 
   it('should have .is-flagged-not-sure class if revealed while flagged as notSure', () => {
-    expect(wrapper.find('.cell').classes('is-flagged-not-sure')).toBeFalsy();
+    expect(wrapper.find('.cell').classes('cell--is-flagged-not-sure')).toBeFalsy();
 
     cellCover.trigger('contextmenu');
     wrapper.setProps({ possibleBomb: store.state.board[0][0].possibleBomb });
@@ -146,7 +146,7 @@ describe('Cell.vue', () => {
 
     wrapper.setProps({ isRevealed: store.state.board[0][0].isRevealed });
 
-    expect(wrapper.find('.cell').classes('is-flagged-not-sure')).toBeTruthy();
+    expect(wrapper.find('.cell').classes('cell--is-flagged-not-sure')).toBeTruthy();
   });
 
   it('clicking cell shows content of cell', () => {

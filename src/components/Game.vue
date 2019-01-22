@@ -16,8 +16,8 @@
     </div>
     <div class="game__board"
          :class="{
-           'game-over': gameOver,
-           'game-won': gameWon,
+           'game__board--game-over': gameOver,
+           'game__board--game-won': gameWon,
          }">
       <div v-for="(row, rowIndex) in board"
            :key="rowIndex"
@@ -84,10 +84,10 @@ export default {
     border: solid 5px lightslategrey;
     transition: border-color 0.3s;
     margin-bottom: 15px;
-    &.game-over {
+    &--game-over {
       border-color: red;
     }
-    &.game-won {
+    &--game-won {
       border-color: limegreen;
     }
     &__row {

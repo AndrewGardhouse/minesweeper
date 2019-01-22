@@ -1,16 +1,16 @@
 <template>
   <div class="cell"
        :class="{
-         'is-flagged-bomb-game-over': possibleBomb && isBomb && isRevealed && gameOver,
-         'is-flagged-possible-bomb': possibleBomb && isRevealed,
-         'is-flagged-not-sure': notSure && isRevealed,
+         'cell--is-flagged-bomb-game-over': possibleBomb && isBomb && isRevealed && gameOver,
+         'cell--is-flagged-possible-bomb': possibleBomb && isRevealed,
+         'cell--is-flagged-not-sure': notSure && isRevealed,
        }">
     <transition name="fade">
-      <button class="cell__cover-button"
+      <button class="cell__button"
            v-if="!isRevealed"
            :class="{
-             'possible-bomb': possibleBomb,
-             'not-sure': notSure,
+             'cell__button--possible-bomb': possibleBomb,
+             'cell__button--not-sure': notSure,
            }"
            :disabled="gameWon || gameOver"
            @click.left="onClick"
@@ -150,17 +150,17 @@ export default {
   justify-content: center;
   font-size: 13px;
   font-weight: bold;
-  &.is-flagged-bomb-game-over {
+  &--is-flagged-bomb-game-over {
     background-color: green;
     color: white;
   }
-  &.is-flagged-possible-bomb, &.is-flagged-not-sure {
+  &--is-flagged-possible-bomb, &--is-flagged-not-sure {
     border-style: dashed;
   }
-  &.is-flagged-possible-bomb {
+  &--is-flagged-possible-bomb {
     border-color: green;
   }
-  &.is-flagged-not-sure {
+  &--is-flagged-not-sure {
     border-color: blue;
   }
   &__content {
@@ -189,7 +189,7 @@ export default {
       color: slategrey;
     }
   }
-  &__cover-button {
+  &__button {
     position: absolute;
     left: 0;
     border:none;
@@ -202,26 +202,20 @@ export default {
     &:focus {
       outline: none;
     }
-    &.game-won {
-      background-color: green;
-    }
-    &.game-over {
-      background-color: red;
-    }
-    &.possible-bomb, &.not-sure {
+    &--possible-bomb, &--not-sure {
       color: white;
       position: absolute;
       width: 100%;
       height: 100%;
       font-size: 16px;
     }
-    &.possible-bomb {
+    &--possible-bomb {
       background-color: green;
       &::after {
         content: '⚑';
       }
     }
-    &.not-sure {
+    &--not-sure {
       background-color: blue;
       &::after {
         content: '?';
