@@ -16,6 +16,7 @@ export function createCell(row, column) {
     isDisabled: false,
     possibleBomb: false,
     notSure: false,
+    isTrigger: false,
     surroundingBombCount: null,
     surroundingCellCoordinates: [],
   };

@@ -41,6 +41,7 @@ describe('Cell.vue', () => {
     expect(wrapper.props().isDisabled).toBe(false);
     expect(wrapper.props().possibleBomb).toBe(false);
     expect(wrapper.props().notSure).toBe(false);
+    expect(wrapper.props().isTrigger).toBe(false);
     expect(wrapper.props().surroundingBombCount).toBe(0);
     expect(wrapper.props().surroundingCellCoordinates).toHaveLength(3);
   });
@@ -212,6 +213,20 @@ describe('Cell.vue', () => {
 
     wrapper.setProps(store.state.board[2][2]);
     expect(wrapper.vm.cellContentClass).toBe('cell__content--is-bomb');
+  });
+
+  it('reveals only clicked cell if is bomb', () => {
+    const bombCell = store.state.board[2][2];
+    wrapper.setProps(bombCell);
+
+    cellCover.trigger('click');
+
+    wrapper.setProps({
+      isRevealed: bombCell.isRevealed,
+      isTrigger: bombCell.isTrigger,
+    });
+
+    expect(wrapper.find('.cell').classes('cell--is-trigger')).toBeTruthy();
   });
 
   // if it's the first cell revealed, it starts a game timer

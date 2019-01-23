@@ -25,4 +25,10 @@ export default {
     cell.notSure = !cell.notSure;
     Object.assign(state.board[row][column], cell);
   },
+  toggleIsTrigger(state, coordinates) {
+    const [row, column] = coordinates;
+    const cell = state.board[row][column];
+    cell.isTrigger = true;
+    Object.assign(state.board[row][column], cell);
+  }
 };

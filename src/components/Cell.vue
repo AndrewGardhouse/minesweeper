@@ -3,6 +3,7 @@
        :class="{
          'cell--is-flagged-possible-bomb': possibleBomb && isRevealed,
          'cell--is-flagged-not-sure': notSure && isRevealed,
+         'cell--is-trigger': isTrigger && isRevealed,
        }">
     <transition name="fade">
       <button class="cell__button"
@@ -65,6 +66,10 @@ export default {
       type: Boolean,
       required: true,
     },
+    isTrigger: {
+      type: Boolean,
+      required: true,
+    },
   },
   computed: {
     cellContent() {
@@ -98,6 +103,7 @@ export default {
       'revealCell',
       'togglePossibleBomb',
       'toggleNotSure',
+      'toggleIsTrigger',
     ]),
     ...mapActions([
       'revealSurroundingCells',
@@ -111,6 +117,7 @@ export default {
       this.revealCell([this.row, this.column]);
 
       if (this.isBomb) {
+        this.toggleIsTrigger([this.row, this.column]);
         this.revealAllBombs();
         return;
       }
@@ -154,6 +161,10 @@ export default {
   justify-content: center;
   font-size: 13px;
   font-weight: bold;
+  &--is-trigger {
+    background-color: red;
+    color: white;
+  }
   &--is-flagged-bomb-game-over {
     background-color: green;
     color: white;

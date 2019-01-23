@@ -68,4 +68,17 @@ describe('mutations', () => {
 
     expect(store.state.board[0][0].notSure).toBeTruthy();
   });
+
+  it('toggleIsTrigger', () => {
+    store.commit('setSelectedDifficulty', 'test');
+
+    expect(store.state.board[2][2].isTrigger).toBe(false);
+
+    store.commit('toggleIsTrigger', [
+      store.state.board[2][2].row,
+      store.state.board[2][2].column,
+    ]);
+
+    expect(store.state.board[2][2].isTrigger).toBe(true);
+  });
 })
