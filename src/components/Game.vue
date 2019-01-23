@@ -75,6 +75,9 @@ export default {
 .game {
   &__controls {
     margin-bottom: 15px;
+    &__reset, &__difficulties {
+      margin: 0 5px;
+    }
   }
   &__board {
     display: inline-block;

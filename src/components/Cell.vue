@@ -148,7 +148,6 @@ export default {
 
 <style lang="scss">
 .cell {
-  // background-color: #fcfcfc;
   border: 1px solid lightslategrey;
   border-radius: 2px;
   width: 22px;
@@ -163,6 +162,7 @@ export default {
   font-weight: bold;
   &--is-trigger {
     background-color: red;
+    border-color: red;
     color: white;
   }
   &--is-flagged-bomb-game-over {
