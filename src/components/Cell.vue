@@ -88,7 +88,7 @@ export default {
       let contentClass = 'cell__content--is-bomb';
 
       if (this.surroundingBombCount > 0) {
-        if (this.surroundingBombCount == 1) {
+        if (this.surroundingBombCount === 1) {
           contentClass = 'cell__content--1-bomb';
         } else {
           contentClass = `cell__content--${this.surroundingBombCount}-bombs`;

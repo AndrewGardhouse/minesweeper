@@ -14,5 +14,5 @@ export default {
   },
   gameOver(state, getters) {
     return getters.allBombs.every(cell => cell.isRevealed);
-  }
+  },
 };

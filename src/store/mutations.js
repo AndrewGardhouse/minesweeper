@@ -30,5 +30,5 @@ export default {
     const cell = state.board[row][column];
     cell.isTrigger = true;
     Object.assign(state.board[row][column], cell);
-  }
+  },
 };
