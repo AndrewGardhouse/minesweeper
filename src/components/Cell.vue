@@ -148,7 +148,7 @@ export default {
 
 <style lang="scss">
 .cell {
-  background-color: whitesmoke;
+  // background-color: #fcfcfc;
   border: 1px solid lightslategrey;
   border-radius: 2px;
   width: 22px;
@@ -217,9 +217,13 @@ export default {
     background-color: lightslategrey;
     padding: 0;
     color: white;
+    transition: background-color 0.2s;
     cursor: pointer;
     &:focus {
       outline: none;
+    }
+    &:hover {
+      background-color: #8f9dab;
     }
     &--possible-bomb, &--not-sure {
       color: white;
