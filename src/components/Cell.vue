@@ -4,6 +4,7 @@
          'cell--is-flagged-possible-bomb': possibleBomb && isRevealed,
          'cell--is-flagged-not-sure': notSure && isRevealed,
          'cell--is-trigger': isTrigger && isRevealed,
+         'cell--not-first': column !== 0,
        }">
     <transition name="fade">
       <button class="cell__button"
@@ -151,7 +152,7 @@ export default {
   background-color: #f9f9f9;
   width: 22px;
   height: 22px;
-  margin: 1px;
+  // margin: 1px;
   padding: 2px;
   position: relative;
   display: flex;
@@ -159,6 +160,9 @@ export default {
   justify-content: center;
   font-size: 13px;
   font-weight: bold;
+  &--not-first {
+    margin-left: 1px;
+  }
   &--is-trigger {
     background-color: #FF3838;
     color: white;

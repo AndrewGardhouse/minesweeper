@@ -21,7 +21,11 @@
          }">
       <div v-for="(row, rowIndex) in board"
            :key="rowIndex"
-           class="game__board__row">
+           class="game__board__row"
+           :class="{
+             'game__board__row--first': rowIndex === 0,
+             'game__board__row--last': rowIndex === board.length - 1,
+           }">
         <Cell v-for="(cell, cellIndex) in row"
               :key="cellIndex"
               v-bind="cell" />
@@ -83,7 +87,7 @@ export default {
   }
   &__board {
     display: inline-block;
-    padding: 1.5px;
+    // padding: 1.5px;
     border: solid 5px lightslategrey;
     transition: border-color 0.3s;
     margin-bottom: 15px;
@@ -98,6 +102,15 @@ export default {
     }
     &__row {
       display: flex;
+      margin-left: 3px;
+      margin-right: 3px;
+      margin-top: 1px;
+      &--first {
+        margin-top: 3px;
+      }
+      &--last {
+        margin-bottom: 3px;
+      }
     }
   }
   .game__message {
