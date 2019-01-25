@@ -31,6 +31,7 @@ body {
 
 h1 {
   color: #7ED9C3;
+  margin-bottom: 15px;
 }
 
 .fade-enter-active {

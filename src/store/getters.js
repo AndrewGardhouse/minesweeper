@@ -18,4 +18,7 @@ export default {
   formattedRunningTime(state) {
     return `${('0' + Math.floor((state.runningTime / 60) % 60)).slice(-2)}:${('0' + Math.floor(state.runningTime % 60)).slice(-2)}`;
   },
+  revealedCells(state) {
+    return [].concat.apply([], state.board).filter(cell => cell.isRevealed).length;
+  }
 };

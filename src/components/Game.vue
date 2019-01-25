@@ -1,7 +1,8 @@
 <template>
   <div class="game">
+    <div class="game__timer">Run Time: {{ formattedRunningTime }}</div>
     <div class="game__controls">
-      <select class="game__controls__difficulties" @change="createBoard($event.target.value)">
+      <select class="game__controls__difficulties" @change="changeGameDifficulties">
         <option v-for="(value, key, index) in gameOptions"
                 :key="index"
                 :value="key"
@@ -62,15 +63,42 @@ export default {
     ...mapGetters([
       'gameWon',
       'gameOver',
+      'formattedRunningTime',
+      'revealedCells',
     ]),
+  },
+  watch: {
+    revealedCells(newVal, oldVal) {
+      if (oldVal === 0 && !this.gameOver) {
+        this.startTimer();
+      }
+    },
+    gameWon(newVal, oldVal) {
+      if (newVal) {
+        this.stopTimer();
+      }
+    },
+    gameOver(newVal, oldVal) {
+      if (newVal) {
+        this.stopTimer();
+      }
+    },
   },
   methods: {
     ...mapActions([
       'createBoard',
+      'startTimer',
+      'stopTimer',
+      'resetTimer',
     ]),
     resetGame() {
       this.createBoard(this.selectedDifficulty);
+      this.resetTimer();
     },
+    changeGameDifficulties(e) {
+      this.createBoard(e.target.value);
+      this.resetTimer();
+    }
   },
 };
 </script>
@@ -84,6 +112,10 @@ export default {
     &__reset, &__difficulties {
       margin: auto 5px;
     }
+  }
+  &__timer {
+    color: #7ED9C3;
+    margin-bottom: 15px;
   }
   &__board {
     display: inline-block;
