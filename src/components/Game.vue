@@ -13,7 +13,6 @@
               name="button"
               class="game__controls__reset"
               @click="resetGame">Reset</button>
-      <!-- game timer -->
     </div>
     <div class="game__board"
          :class="{
@@ -44,6 +43,7 @@
 </template>
 
 <script>
+/* eslint-disable no-unused-vars */
 import { mapState, mapActions, mapGetters } from 'vuex';
 import Cell from '@/components/Cell.vue';
 
@@ -98,7 +98,7 @@ export default {
     changeGameDifficulties(e) {
       this.createBoard(e.target.value);
       this.resetTimer();
-    }
+    },
   },
 };
 </script>

@@ -25,7 +25,7 @@ export default {
   revealAllBombs({ commit, getters }) {
     getters.allBombs.forEach(cell => commit('revealCell', [cell.row, cell.column]));
   },
-  startTimer({ commit, state }) {
+  startTimer({ commit }) {
     const timerInterval = setInterval(() => {
       commit('increaseRunningTime');
     }, 1000);

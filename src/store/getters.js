@@ -16,9 +16,11 @@ export default {
     return getters.allBombs.every(cell => cell.isRevealed);
   },
   formattedRunningTime(state) {
-    return `${('0' + Math.floor((state.runningTime / 60) % 60)).slice(-2)}:${('0' + Math.floor(state.runningTime % 60)).slice(-2)}`;
+    const minutes = `0${Math.floor((state.runningTime / 60) % 60)}`;
+    const seconds = `0${Math.floor(state.runningTime % 60)}`;
+    return `${minutes.slice(-2)}:${seconds.slice(-2)}`;
   },
   revealedCells(state) {
     return [].concat.apply([], state.board).filter(cell => cell.isRevealed).length;
-  }
+  },
 };

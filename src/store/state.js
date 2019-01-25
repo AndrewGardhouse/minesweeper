@@ -19,12 +19,12 @@ export default {
       bombs: 200,
       optionText: 'Hard (32x32, 200 Bombs)',
     },
-    veryHard: {
-      columns: 32,
-      rows: 32,
-      bombs: 400,
-      optionText: 'Very Hard (32x32, 400 Bombs)',
-    },
+    // veryHard: {
+    //   columns: 32,
+    //   rows: 32,
+    //   bombs: 400,
+    //   optionText: 'Very Hard (32x32, 400 Bombs)',
+    // },
   },
   board: [],
   timerInterval: null,

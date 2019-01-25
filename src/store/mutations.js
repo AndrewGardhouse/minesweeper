@@ -1,4 +1,5 @@
 /* eslint-disable no-param-reassign */
+/* eslint-disable no-plusplus */
 
 export default {
   addBoard(state, board) {
@@ -42,5 +43,5 @@ export default {
   },
   resetRunningTime(state) {
     state.runningTime = 0;
-  }
+  },
 };
