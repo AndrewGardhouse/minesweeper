@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <h1>Minesweeper</h1>
     <Game />
   </div>
 </template>
@@ -18,7 +19,7 @@ export default {
 <style lang="scss">
 body {
   // background-color: #f7f7f7;
-  background-color: #595959;
+  background-color: #393939;
 }
 
 #app {
@@ -26,7 +27,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+}
+
+h1 {
+  color: #7ED9C3;
 }
 
 .fade-enter-active {

@@ -88,7 +88,7 @@ export default {
   &__board {
     display: inline-block;
     // padding: 1.5px;
-    border: solid 5px darkgrey;
+    border: solid 7px darkgrey;
     transition: border-color 0.3s;
     margin-bottom: 15px;
     &--game-over, &--game-won {
