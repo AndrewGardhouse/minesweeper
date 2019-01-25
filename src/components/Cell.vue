@@ -148,12 +148,11 @@ export default {
 
 <style lang="scss">
 .cell {
-  border: 1px solid lightslategrey;
-  border-radius: 2px;
+  background-color: #f9f9f9;
   width: 22px;
   height: 22px;
   margin: 1px;
-  padding: 1px;
+  padding: 2px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -161,23 +160,17 @@ export default {
   font-size: 13px;
   font-weight: bold;
   &--is-trigger {
-    background-color: red;
-    border-color: red;
-    color: white;
-  }
-  &--is-flagged-bomb-game-over {
-    background-color: green;
+    background-color: #FF3838;
     color: white;
   }
   &--is-flagged-possible-bomb, &--is-flagged-not-sure {
-    border-width: 2px;
     padding: 0;
   }
   &--is-flagged-possible-bomb {
-    border-color: green;
+    border: 2px solid #7ED9C3;
   }
   &--is-flagged-not-sure {
-    border-color: blue;
+    border: 2px solid dodgerblue;
   }
   &__content {
     &--is-bomb {
@@ -233,16 +226,22 @@ export default {
       font-size: 16px;
     }
     &--possible-bomb {
-      background-color: green;
+      background-color: #7ED9C3;
       &::after {
         content: '⚑';
       }
+      &:hover {
+        background-color: #7ED9C3;
+      }
     }
     &--not-sure {
-      background-color: blue;
+      background-color: dodgerblue;
       &::after {
         content: '?';
         font-weight: bold;
+      }
+      &:hover {
+        background-color: dodgerblue;
       }
     }
   }

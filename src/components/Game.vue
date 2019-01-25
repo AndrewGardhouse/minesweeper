@@ -74,9 +74,11 @@ export default {
 <style lang="scss">
 .game {
   &__controls {
+    display: flex;
+    justify-content: center;
     margin-bottom: 15px;
     &__reset, &__difficulties {
-      margin: 0 5px;
+      margin: auto 5px;
     }
   }
   &__board {
@@ -89,10 +91,10 @@ export default {
       pointer-events: none;
     }
     &--game-over {
-      border-color: red;
+      border-color: #FF3838;
     }
     &--game-won {
-      border-color: limegreen;
+      border-color: #7ED9C3;
     }
     &__row {
       display: flex;
@@ -101,10 +103,10 @@ export default {
   .game__message {
     font-weight: bold;
     &--win {
-      color: green;
+      color: #7ED9C3;
     }
     &--lose {
-      color: red;
+      color: #FF3838;
     }
   }
 }
