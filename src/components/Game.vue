@@ -88,7 +88,7 @@ export default {
   &__board {
     display: inline-block;
     // padding: 1.5px;
-    border: solid 5px lightslategrey;
+    border: solid 5px darkgrey;
     transition: border-color 0.3s;
     margin-bottom: 15px;
     &--game-over, &--game-won {
@@ -102,14 +102,14 @@ export default {
     }
     &__row {
       display: flex;
-      margin-left: 3px;
-      margin-right: 3px;
+      margin-left: 1px;
+      margin-right: 1px;
       margin-top: 1px;
       &--first {
-        margin-top: 3px;
+        margin-top: 1px;
       }
       &--last {
-        margin-bottom: 3px;
+        margin-bottom: 1px;
       }
     }
   }

@@ -211,7 +211,7 @@ export default {
     border:none;
     height: 100%;
     width: 100%;
-    background-color: lightslategrey;
+    background-color: darkgrey;
     padding: 0;
     color: white;
     transition: background-color 0.2s;
@@ -220,7 +220,7 @@ export default {
       outline: none;
     }
     &:hover {
-      background-color: #8f9dab;
+      background-color: #bfbfbf;
     }
     &--possible-bomb, &--not-sure {
       color: white;
