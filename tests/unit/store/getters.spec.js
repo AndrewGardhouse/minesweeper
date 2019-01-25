@@ -42,4 +42,16 @@ describe('getters', () => {
 
     expect(store.getters.gameOver).toBe(true);
   });
+
+  it('formattedRunningTime', () => {
+    expect(store.getters.formattedRunningTime).toBe('00:00');
+
+    store.state.runningTime = 127;
+
+    expect(store.getters.formattedRunningTime).toBe('02:07');
+
+    store.state.runningTime = 3;
+
+    expect(store.getters.formattedRunningTime).toBe('00:03');
+  })
 });

@@ -9,6 +9,9 @@ describe('mutations', () => {
   let store;
   beforeEach(() => {
     store = new Vuex.Store(sampleStore);
+    store.state.timerInterval = null;
+    store.state.runningTime = 0;
+    jest.clearAllTimers();
   });
 
   it('addBoard', () => {
@@ -80,5 +83,56 @@ describe('mutations', () => {
     ]);
 
     expect(store.state.board[2][2].isTrigger).toBe(true);
+  });
+
+  it('setTimerInterval', () => {
+    expect(store.state.timerInterval).toBeNull();
+
+    const timerInterval = setInterval(() => {
+      console.log('hi');
+    }, 1000);
+
+    store.commit('setTimerInterval', timerInterval);
+
+    expect(store.state.timerInterval).not.toBeNull();
+  });
+
+  it('increaseRunningTime', () => {
+    expect(store.state.runningTime).toBe(0);
+
+    store.commit('increaseRunningTime');
+
+    expect(store.state.runningTime).toBe(1);
+
+    store.commit('increaseRunningTime');
+
+    expect(store.state.runningTime).toBe(2);
+  });
+
+  it('clearTimerInterval', () => {
+    expect(store.state.timerInterval).toBeNull();
+
+    const timerInterval = setInterval(() => {
+      console.log('hi');
+    }, 1000);
+
+    store.commit('setTimerInterval', timerInterval);
+
+    expect(store.state.timerInterval).not.toBeNull();
+
+    store.commit('clearTimerInterval');
+
+    expect(store.state.timerInterval).toBeNull();
+  });
+
+  it('resetRunningTime', () => {
+    store.commit('increaseRunningTime');
+    store.commit('increaseRunningTime');
+
+    expect(store.state.runningTime).toBe(2);
+
+    store.commit('resetRunningTime');
+
+    expect(store.state.runningTime).toBe(0);
   });
 })

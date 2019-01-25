@@ -31,4 +31,16 @@ export default {
     cell.isTrigger = true;
     Object.assign(state.board[row][column], cell);
   },
+  setTimerInterval(state, interval) {
+    state.timerInterval = interval;
+  },
+  increaseRunningTime(state) {
+    state.runningTime++;
+  },
+  clearTimerInterval(state) {
+    state.timerInterval = null;
+  },
+  resetRunningTime(state) {
+    state.runningTime = 0;
+  }
 };

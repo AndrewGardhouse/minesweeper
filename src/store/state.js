@@ -27,4 +27,6 @@ export default {
     },
   },
   board: [],
+  timerInterval: null,
+  runningTime: 0,
 };

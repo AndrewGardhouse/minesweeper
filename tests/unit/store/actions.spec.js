@@ -13,6 +13,9 @@ describe('actions', () => {
 
   beforeEach(() => {
     store = new Vuex.Store(sampleStore);
+    store.state.timerInterval = null;
+    store.state.runningTime = 0;
+    jest.clearAllTimers();
   });
 
   it('createBoard with easy difficulty', () => {
@@ -96,5 +99,48 @@ describe('actions', () => {
     expect(store.state.board[2][0].isRevealed).toBeFalsy();
     expect(store.state.board[2][1].isRevealed).toBeFalsy();
     expect(store.state.board[2][2].isRevealed).toBeTruthy();
+  });
+
+  it('startTimer', () => {
+    expect(store.state.timerInterval).toBeNull();
+    expect(store.state.runningTime).toBe(0);
+
+    store.dispatch('startTimer');
+
+    expect(store.state.timerInterval).not.toBeNull();
+    jest.runTimersToTime(5000);
+    expect(store.state.runningTime).toBe(5);
+  });
+
+  it('stopTimer', () => {
+    expect(store.state.timerInterval).toBeNull();
+    expect(store.state.runningTime).toBe(0);
+
+    store.dispatch('startTimer');
+
+    expect(store.state.timerInterval).not.toBeNull();
+    jest.runTimersToTime(5000);
+    expect(store.state.runningTime).toBe(5);
+
+    store.dispatch('stopTimer');
+
+    expect(store.state.timerInterval).toBeNull();
+    expect(store.state.runningTime).toBe(5);
+  });
+
+  it('resetTimer', () => {
+    expect(store.state.timerInterval).toBeNull();
+    expect(store.state.runningTime).toBe(0);
+
+    store.dispatch('startTimer');
+
+    expect(store.state.timerInterval).not.toBeNull();
+    jest.runTimersToTime(5000);
+    expect(store.state.runningTime).toBe(5);
+
+    store.dispatch('resetTimer');
+
+    expect(store.state.timerInterval).toBeNull();
+    expect(store.state.runningTime).toBe(0);
   });
 });

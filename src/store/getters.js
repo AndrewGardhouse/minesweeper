@@ -15,4 +15,7 @@ export default {
   gameOver(state, getters) {
     return getters.allBombs.every(cell => cell.isRevealed);
   },
+  formattedRunningTime(state) {
+    return `${('0' + Math.floor((state.runningTime / 60) % 60)).slice(-2)}:${('0' + Math.floor(state.runningTime % 60)).slice(-2)}`;
+  },
 };
