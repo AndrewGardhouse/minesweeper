@@ -46,4 +46,10 @@ describe('Game.vue', () => {
 
     expect(store.state.board[0][0].isRevealed).toBeFalsy();
   });
+
+  it('formattedRunningTime', () => {
+    expect(wrapper.vm.formattedRunningTime()).toBe('00:00');
+    expect(wrapper.vm.formattedRunningTime(127)).toBe('02:07');
+    expect(wrapper.vm.formattedRunningTime(3)).toBe('00:03');
+  });
 });

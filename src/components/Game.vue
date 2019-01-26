@@ -1,7 +1,12 @@
 <template>
   <div class="game">
-    <div class="game__timer">Run Time: {{ formattedRunningTime }}</div>
+    <div class="game__timer">Run Time: {{ formattedRunningTime(runningTime) }}</div>
     <div class="game__controls">
+      <button type="button"
+              name="button"
+              class="game__controls__modal-button"
+              @click="openModal"
+              >Check Fastest Times</button>
       <select class="game__controls__difficulties" @change="changeGameDifficulties">
         <option v-for="(value, key, index) in gameOptions"
                 :key="index"
@@ -63,11 +68,12 @@ export default {
       'gameOptions',
       'board',
       'selectedDifficulty',
+      'fastestTimes',
+      'runningTime',
     ]),
     ...mapGetters([
       'gameWon',
       'gameOver',
-      'formattedRunningTime',
       'revealedCells',
     ]),
   },
@@ -80,6 +86,7 @@ export default {
     gameWon(newVal, oldVal) {
       if (newVal) {
         this.stopTimer();
+        this.setFastestTime();
       }
     },
     gameOver(newVal, oldVal) {
@@ -94,6 +101,7 @@ export default {
       'startTimer',
       'stopTimer',
       'resetTimer',
+      'setFastestTime',
     ]),
     resetGame() {
       this.createBoard(this.selectedDifficulty);
@@ -103,6 +111,26 @@ export default {
       this.createBoard(e.target.value);
       this.resetTimer();
     },
+    formattedRunningTime(time = 0) {
+      const minutes = `0${Math.floor((time / 60) % 60)}`;
+      const seconds = `0${Math.floor(time % 60)}`;
+      return `${minutes.slice(-2)}:${seconds.slice(-2)}`;
+    },
+    openModal() {
+      const easyFastest = this.fastestTimes.easy ? this.formattedRunningTime(this.fastestTimes.easy) : 'N/A';
+      const mediumFastest = this.fastestTimes.medium ? this.formattedRunningTime(this.fastestTimes.medium) : 'N/A';
+      const hardFastest = this.fastestTimes.hard ? this.formattedRunningTime(this.fastestTimes.hard) : 'N/A';
+
+      this.$modal.show('dialog', {
+        title: 'Fastest Times',
+        text: `
+          <strong>Easy</strong>: ${easyFastest} <br>
+          <strong>Medium</strong>: ${mediumFastest} <br>
+          <strong>Hard</strong>: ${hardFastest}
+        `,
+        buttons: [{ title: 'Close' }],
+     });
+   },
   },
 };
 </script>
@@ -113,7 +141,7 @@ export default {
     display: flex;
     justify-content: center;
     margin-bottom: 15px;
-    &__reset, &__difficulties {
+    &__reset, &__difficulties, &__modal-button {
       margin: auto 5px;
     }
   }

@@ -2,6 +2,7 @@
   <div id="app">
     <h1>Minesweeper</h1>
     <Game />
+    <v-dialog />
   </div>
 </template>
 
@@ -18,7 +19,6 @@ export default {
 
 <style lang="scss">
 body {
-  // background-color: #f7f7f7;
   background-color: #393939;
 }
 
@@ -32,6 +32,23 @@ body {
 h1 {
   color: #7ED9C3;
   margin-bottom: 15px;
+}
+
+.v--modal {
+  background-color: #393939;
+  color: #7ED9C3;
+  border-radius: 0px;
+  text-align: center;
+  .dialog-c-title {
+    font-size: 18px;
+  }
+  .vue-dialog-buttons {
+    border-top-color: darkgrey;
+    .vue-dialog-button {
+      font-weight: bold;
+      font-size: 14px !important;
+    }
+  }
 }
 
 .fade-enter-active {
