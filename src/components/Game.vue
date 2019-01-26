@@ -52,6 +52,10 @@ export default {
     Cell,
   },
   mounted() {
+    if (this.board.length > 0 && this.revealedCells > 0 && !this.gameWon && !this.gameOver) {
+      this.startTimer();
+      return;
+    }
     this.resetGame();
   },
   computed: {
@@ -119,7 +123,6 @@ export default {
   }
   &__board {
     display: inline-block;
-    // padding: 1.5px;
     border: solid 7px darkgrey;
     transition: border-color 0.3s;
     margin-bottom: 15px;

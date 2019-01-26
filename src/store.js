@@ -17,6 +17,8 @@ export default new Vuex.Store({
     key: 'minesweeper',
     paths: [
       'selectedDifficulty',
+      'board',
+      'runningTime',
     ],
   })],
 });
