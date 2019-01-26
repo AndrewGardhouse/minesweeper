@@ -135,4 +135,19 @@ describe('mutations', () => {
 
     expect(store.state.runningTime).toBe(0);
   });
+
+  it('updateFastestTime', () => {
+    store.commit('setSelectedDifficulty', 'medium');
+
+    const gameDifficulty = store.state.selectedDifficulty;
+    const time = 55;
+
+    store.state.runningTime = time;
+
+    expect(store.state.fastestTimes[gameDifficulty]).toBeNull();
+
+    store.commit('updateFastestTime', time);
+
+    expect(store.state.fastestTimes[gameDifficulty]).toBe(time);
+  });
 })

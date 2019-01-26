@@ -19,6 +19,8 @@ export default new Vuex.Store({
       'selectedDifficulty',
       'board',
       'runningTime',
+      'gameOptions',
+      'fastestTimes',
     ],
   })],
 });

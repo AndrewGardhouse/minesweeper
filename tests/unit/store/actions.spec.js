@@ -57,19 +57,6 @@ describe('actions', () => {
     expect(bombCount).toBe(store.state.gameOptions[difficulty].bombs);
   });
 
-  it('createBoard with veryHard difficulty', () => {
-    // creates a game board based on difficulty provided
-    const difficulty = 'veryHard';
-    store.dispatch('createBoard', difficulty);
-
-    const bombCount = getBombCount(store.state.board);
-
-    expect(store.state.selectedDifficulty).toBe(difficulty);
-    expect(store.state.board.length).toBe(store.state.gameOptions[difficulty].rows);
-    expect(store.state.board[0].length).toBe(store.state.gameOptions[difficulty].columns);
-    expect(bombCount).toBe(store.state.gameOptions[difficulty].bombs);
-  });
-
   it('revealSurroundingCells', () => {
     store.commit('addBoard', createTestBoard());
 
@@ -142,5 +129,34 @@ describe('actions', () => {
 
     expect(store.state.timerInterval).toBeNull();
     expect(store.state.runningTime).toBe(0);
+  });
+
+  it('setFastestTime', () => {
+    store.commit('setSelectedDifficulty', 'medium');
+    const gameDifficulty = store.state.selectedDifficulty;
+
+    const fastestTime = 25;
+    const secondFastestTime = 30;
+    const thirdFastestTime = 35;
+
+    store.state.runningTime = thirdFastestTime;
+
+    expect(store.state.fastestTimes[gameDifficulty]).toBeNull();
+
+    store.dispatch('setFastestTime');
+
+    expect(store.state.fastestTimes[gameDifficulty]).toBe(thirdFastestTime);
+
+    store.state.runningTime = fastestTime;
+
+    store.dispatch('setFastestTime');
+
+    expect(store.state.fastestTimes[gameDifficulty]).toBe(fastestTime);
+
+    store.state.runningTime = secondFastestTime;
+
+    store.dispatch('setFastestTime');
+
+    expect(store.state.fastestTimes[gameDifficulty]).toBe(fastestTime);
   });
 });

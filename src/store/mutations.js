@@ -44,4 +44,7 @@ export default {
   resetRunningTime(state) {
     state.runningTime = 0;
   },
+  updateFastestTime(state) {
+    state.fastestTimes[state.selectedDifficulty] = state.runningTime;
+  },
 };

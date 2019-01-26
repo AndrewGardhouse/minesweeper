@@ -41,4 +41,14 @@ export default {
     commit('clearTimerInterval');
     commit('resetRunningTime');
   },
+  setFastestTime({ commit, state }) {
+    const gameDifficulty = state.selectedDifficulty
+
+    // if the current fastest time with the selectedDifficulty is null
+    // or the current runningTime is less than the fastestTime set for that selectedDifficulty
+    // update the fastest time for the selectedDifficulty
+    if (!state.fastestTimes[gameDifficulty] || state.fastestTimes[gameDifficulty] > state.runningTime) {
+      commit('updateFastestTime');
+    }
+  },
 };

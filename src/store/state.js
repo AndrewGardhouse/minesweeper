@@ -29,4 +29,9 @@ export default {
   board: [],
   timerInterval: null,
   runningTime: 0,
+  fastestTimes: {
+    easy: null,
+    medium: null,
+    hard: null,
+  },
 };
