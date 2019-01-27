@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <h1>Minesweeper</h1>
     <Game />
     <v-dialog />
   </div>
