@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <h1>Minesweeper</h1>
     <Game />
     <v-dialog />
   </div>
@@ -35,10 +34,10 @@ h1 {
 }
 
 .v--modal {
-  background-color: #393939;
+  background-color: #393939 !important;
   color: #7ED9C3;
-  border-radius: 0px;
-  text-align: center;
+  border-radius: 0px !important;
+  text-align: center !important;
   .dialog-c-title {
     font-size: 18px;
   }

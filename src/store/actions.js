@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { createBoard } from '@/helpers';
 
 export default {
@@ -42,7 +43,7 @@ export default {
     commit('resetRunningTime');
   },
   setFastestTime({ commit, state }) {
-    const gameDifficulty = state.selectedDifficulty
+    const gameDifficulty = state.selectedDifficulty;
 
     // if the current fastest time with the selectedDifficulty is null
     // or the current runningTime is less than the fastestTime set for that selectedDifficulty

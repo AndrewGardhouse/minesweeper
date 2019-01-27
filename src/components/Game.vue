@@ -1,12 +1,10 @@
 <template>
   <div class="game">
-    <div class="game__timer">Run Time: {{ formattedRunningTime(runningTime) }}</div>
     <div class="game__controls">
       <button type="button"
-              name="button"
+              name="modal-button"
               class="game__controls__modal-button"
-              @click="openModal"
-              >Check Fastest Times</button>
+              @click="openModal"> Fastest Times</button>
       <select class="game__controls__difficulties" @change="changeGameDifficulties">
         <option v-for="(value, key, index) in gameOptions"
                 :key="index"
@@ -15,9 +13,10 @@
                 v-once>{{ value.optionText }}</option>
       </select>
       <button type="button"
-              name="button"
+              name="reset-button"
               class="game__controls__reset"
               @click="resetGame">Reset</button>
+      <div class="game__controls__timer">{{ formattedRunningTime(runningTime) }}</div>
     </div>
     <div class="game__board"
          :class="{
@@ -129,8 +128,8 @@ export default {
           <strong>Hard</strong>: ${hardFastest}
         `,
         buttons: [{ title: 'Close' }],
-     });
-   },
+      });
+    },
   },
 };
 </script>
@@ -141,13 +140,14 @@ export default {
     display: flex;
     justify-content: center;
     margin-bottom: 15px;
-    &__reset, &__difficulties, &__modal-button {
+    &__reset, &__difficulties, &__modal-button, &__timer {
       margin: auto 5px;
     }
-  }
-  &__timer {
-    color: #7ED9C3;
-    margin-bottom: 15px;
+    &__timer {
+      color: #7ED9C3;
+      line-height: 1;
+      font-size: 16px;
+    }
   }
   &__board {
     display: inline-block;
@@ -178,6 +178,7 @@ export default {
   }
   .game__message {
     font-weight: bold;
+    font-size: 15px;
     &--win {
       color: #7ED9C3;
     }

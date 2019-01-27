@@ -109,24 +109,16 @@ export default {
     ...mapActions([
       'revealSurroundingCells',
       'revealAllBombs',
-      'stopTimer',
     ]),
     onClick() {
       if (this.possibleBomb || this.notSure) {
         return;
       }
 
-      // If first cell clicked, start timer
-      this.$emit('isGameStarted');
-
       this.revealCell([this.row, this.column]);
-
-      // Check if game won, stop timer
-      // this.$emit('isGameWon');
 
       if (this.isBomb) {
         this.toggleIsTrigger([this.row, this.column]);
-        this.stopTimer();
         this.revealAllBombs();
         return;
       }

@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import VModal from 'vue-js-modal'
+import VModal from 'vue-js-modal';
 import App from '@/App.vue';
 import store from '@/store';
 import '@/registerServiceWorker';

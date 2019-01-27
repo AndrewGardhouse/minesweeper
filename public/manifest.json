@@ -1,20 +1,13 @@
 {
-  "name": "minesweeper",
-  "short_name": "minesweeper",
-  "icons": [
-    {
-      "src": "./img/icons/android-chrome-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "./img/icons/android-chrome-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ],
-  "start_url": "./index.html",
-  "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#4DBA87"
+  "name": "Minesweeper",
+  "version": "1.0",
+  "manifest_version": 2,
+  "description": "Open up a new tab with a wonderful and inspiring quote from philosopher Jack Handey.",
+  "chrome_url_overrides" : {
+    "newtab": "index.html"
+  },
+  "web_accessible_resources" : [
+    "css/*.css",
+    "js/*.js"
+  ]
 }
