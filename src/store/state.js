@@ -14,17 +14,17 @@ export default {
       optionText: 'Medium (16x16, 40 Bombs)',
     },
     hard: {
+      columns: 30,
+      rows: 16,
+      bombs: 99,
+      optionText: 'Hard (30x16, 99 Bombs)',
+    },
+    veryHard: {
       columns: 32,
       rows: 32,
       bombs: 200,
-      optionText: 'Hard (32x32, 200 Bombs)',
+      optionText: 'Very Hard (32x32, 200 Bombs)',
     },
-    // veryHard: {
-    //   columns: 32,
-    //   rows: 32,
-    //   bombs: 400,
-    //   optionText: 'Very Hard (32x32, 400 Bombs)',
-    // },
   },
   board: [],
   timerInterval: null,
@@ -33,5 +33,6 @@ export default {
     easy: null,
     medium: null,
     hard: null,
+    veryHard: null,
   },
 };

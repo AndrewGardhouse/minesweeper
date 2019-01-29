@@ -109,6 +109,7 @@ export default {
     ...mapActions([
       'revealSurroundingCells',
       'revealAllBombs',
+      'stopTimer',
     ]),
     onClick() {
       if (this.possibleBomb || this.notSure) {
@@ -118,6 +119,7 @@ export default {
       this.revealCell([this.row, this.column]);
 
       if (this.isBomb) {
+        this.stopTimer();
         this.toggleIsTrigger([this.row, this.column]);
         this.revealAllBombs();
         return;
