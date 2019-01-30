@@ -5,6 +5,10 @@
               name="modal-button"
               class="game__controls__modal-button"
               @click="openModal"> Fastest Times</button>
+      <button type="button"
+              name="reset-button"
+              class="game__controls__reset"
+              @click="resetGame">Reset</button>
       <select class="game__controls__difficulties" @change="changeGameDifficulties">
         <option v-for="(value, key, index) in gameOptions"
                 :key="index"
@@ -12,10 +16,6 @@
                 :selected="key === selectedDifficulty"
                 v-once>{{ value.optionText }}</option>
       </select>
-      <button type="button"
-              name="reset-button"
-              class="game__controls__reset"
-              @click="resetGame">Reset</button>
       <div class="game__controls__timer">{{ formattedRunningTime(runningTime) }}</div>
     </div>
     <div class="game__board"
@@ -140,6 +140,21 @@ export default {
     display: flex;
     justify-content: center;
     margin-bottom: 15px;
+    &__reset, &__modal-button {
+      border: none;
+      padding: 5px 10px;
+      color: #7ED9C3;
+      font-family: inherit;
+      font-size: 14px;
+      line-height: 1;
+      background-color: #393939;
+      border: 1px solid #eee;
+      border-radius: 5px;
+      cursor: pointer;
+      &:focus {
+        outline:0;
+      }
+    }
     &__reset, &__difficulties, &__modal-button, &__timer {
       margin: auto 5px;
     }
