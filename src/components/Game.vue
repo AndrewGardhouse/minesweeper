@@ -179,6 +179,7 @@ export default {
   .game__message {
     font-weight: bold;
     font-size: 15px;
+    margin-bottom: 15px;
     &--win {
       color: #7ED9C3;
     }

@@ -2,6 +2,18 @@
   <div id="app">
     <h1>Minesweeper</h1>
     <Game />
+    <div class="links">
+      <a href="https://chrome.google.com/webstore/detail/minesweeper-extension/mlbddfjjjedjeablobkakcbmenmpkoag?hl=en"
+         target="_blank"
+         rel="noopener noreferrer">
+        <img src="/img/chrome.png" alt="Chrome Store">
+      </a>
+      <a href="https://github.com/AndrewGardhouse/minesweeper"
+         target="_blank"
+         rel="noopener noreferrer">
+        <img src="/img/octocat.png" alt="Github Octocat">
+      </a>
+    </div>
     <v-dialog />
   </div>
 </template>
@@ -48,6 +60,15 @@ h1 {
       font-weight: bold;
       font-size: 14px !important;
     }
+  }
+}
+
+.links {
+  display: flex;
+  justify-content: center;
+  a {
+    text-decoration: none;
+    margin: auto 10px;
   }
 }
 

@@ -1,4 +1,6 @@
-# minesweeper
+# Minesweeper
+
+Get the [Chrome Extension](https://chrome.google.com/webstore/detail/minesweeper-extension/mlbddfjjjedjeablobkakcbmenmpkoag?hl=en)
 
 ## Project setup
 ```
