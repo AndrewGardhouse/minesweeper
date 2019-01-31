@@ -8,11 +8,11 @@ self.__precacheManifest = [
     "url": "https://andrewgardhouse.github.io/minesweeper/js/chunk-vendors.19774237.js"
   },
   {
-    "revision": "5efa37f92a7d50ad27e5",
-    "url": "https://andrewgardhouse.github.io/minesweeper/js/app.f3516109.js"
+    "revision": "cc2eb04ba4e38995a707",
+    "url": "https://andrewgardhouse.github.io/minesweeper/js/app.84399709.js"
   },
   {
-    "revision": "7a4284a11c47de39df99ba6fa8549ba0",
+    "revision": "c31dfa68f3adb47f1792de9d665b8e4a",
     "url": "https://andrewgardhouse.github.io/minesweeper/index.html"
   },
   {
@@ -24,7 +24,7 @@ self.__precacheManifest = [
     "url": "https://andrewgardhouse.github.io/minesweeper/img/octocat.b0ab64ad.png"
   },
   {
-    "revision": "5efa37f92a7d50ad27e5",
+    "revision": "cc2eb04ba4e38995a707",
     "url": "https://andrewgardhouse.github.io/minesweeper/css/app.b2956457.css"
   }
 ];

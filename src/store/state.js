@@ -33,5 +33,6 @@ export default {
     easy: null,
     medium: null,
     hard: null,
+    veryHard: null,
   },
 };

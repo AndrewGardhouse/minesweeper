@@ -119,13 +119,15 @@ export default {
       const easyFastest = this.fastestTimes.easy ? this.formattedRunningTime(this.fastestTimes.easy) : 'N/A';
       const mediumFastest = this.fastestTimes.medium ? this.formattedRunningTime(this.fastestTimes.medium) : 'N/A';
       const hardFastest = this.fastestTimes.hard ? this.formattedRunningTime(this.fastestTimes.hard) : 'N/A';
+      const veryHardFastest = this.fastestTimes.veryHard ? this.formattedRunningTime(this.fastestTimes.veryHard) : 'N/A';
 
       this.$modal.show('dialog', {
         title: 'Fastest Times',
         text: `
           <strong>Easy</strong>: ${easyFastest} <br>
           <strong>Medium</strong>: ${mediumFastest} <br>
-          <strong>Hard</strong>: ${hardFastest}
+          <strong>Hard</strong>: ${hardFastest} <br>
+          <strong>Very Hard</strong>: ${veryHardFastest}
         `,
         buttons: [{ title: 'Close' }],
       });
