@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "https://andrewgardhouse.github.io/minesweeper/precache-manifest.e8b28f17676bae256eac8b1f6c93cf60.js"
+  "https://andrewgardhouse.github.io/minesweeper/precache-manifest.c7040de8b85925c56d4502fd12c30539.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "minesweeper"});
