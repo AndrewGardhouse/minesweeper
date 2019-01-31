@@ -8,11 +8,11 @@ self.__precacheManifest = [
     "url": "https://andrewgardhouse.github.io/minesweeper/js/chunk-vendors.19774237.js"
   },
   {
-    "revision": "fb00699adb899c4fe8f4",
-    "url": "https://andrewgardhouse.github.io/minesweeper/js/app.6eab41ca.js"
+    "revision": "88af5f53af8338d04a78",
+    "url": "https://andrewgardhouse.github.io/minesweeper/js/app.099327cc.js"
   },
   {
-    "revision": "1f53f39ddc7a01df255bea393d9014d2",
+    "revision": "eaa93cd4e0c7806d6f07008692c6eaba",
     "url": "https://andrewgardhouse.github.io/minesweeper/index.html"
   },
   {
@@ -21,14 +21,10 @@ self.__precacheManifest = [
   },
   {
     "revision": "b0ab64adcb6e798a7a4ae866c431e16f",
-    "url": "https://andrewgardhouse.github.io/minesweeper/img/octocat.png"
+    "url": "https://andrewgardhouse.github.io/minesweeper/img/octocat.b0ab64ad.png"
   },
   {
-    "revision": "efcb4f03bdefbcc14bac0f5f5405a8b3",
-    "url": "https://andrewgardhouse.github.io/minesweeper/img/chrome.png"
-  },
-  {
-    "revision": "fb00699adb899c4fe8f4",
-    "url": "https://andrewgardhouse.github.io/minesweeper/css/app.07f6d222.css"
+    "revision": "88af5f53af8338d04a78",
+    "url": "https://andrewgardhouse.github.io/minesweeper/css/app.b2956457.css"
   }
 ];
